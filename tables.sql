@@ -5,6 +5,7 @@ CREATE SEQUENCE resource_id     CACHE 100 START WITH 10000;
 CREATE SEQUENCE project_id      CACHE 100 START WITH 100;
 CREATE SEQUENCE task_id         CACHE 100 START WITH 100000;
 CREATE SEQUENCE sprint_id       CACHE 100 START WITH 1000;
+CREATE SEQUENCE skill_id        CACHE 100 START WITH 1000;
 
 
 
@@ -29,7 +30,7 @@ CREATE TABLE resources (
     person_phone                NUMBER(20),
     person_mail                 VARCHAR2(128),
     description_                VARCHAR2(2000),
-    is_available                CHAR(1)             CONSTRAINT nn_resources_available   NOT NULL,
+    is_active                   CHAR(1)             CONSTRAINT nn_resources_active      NOT NULL,
     --
     updated_by                  VARCHAR2(128),
     updated_at                  DATE,
@@ -38,14 +39,14 @@ CREATE TABLE resources (
         PRIMARY KEY (resource_id)
 );
 --
-COMMENT ON TABLE resources IS 'List of people available for projects';
+COMMENT ON TABLE resources IS 'List of people active for projects';
 --
 COMMENT ON COLUMN resources.resource_id             IS '';
 COMMENT ON COLUMN resources.person_name             IS '';
 COMMENT ON COLUMN resources.person_phone            IS '';
 COMMENT ON COLUMN resources.person_mail             IS '';
 COMMENT ON COLUMN resources.description_            IS '';
-COMMENT ON COLUMN resources.is_available            IS '';
+COMMENT ON COLUMN resources.is_active               IS '';
 
 
 
@@ -53,9 +54,9 @@ COMMENT ON COLUMN resources.is_available            IS '';
 -- SKILLS
 --
 CREATE TABLE skills (
-    skill_id                    VARCHAR2(30)        CONSTRAINT nn_skills_id     NOT NULL,
+    skill_id                    NUMBER(10)          CONSTRAINT nn_skills_id     NOT NULL,
     --
-    skill_name                  VARCHAR2(30)        CONSTRAINT nn_skills_name   NOT NULL,
+    skill_name                  VARCHAR2(64)        CONSTRAINT nn_skills_name   NOT NULL,
     --
     updated_by                  VARCHAR2(128),
     updated_at                  DATE,
@@ -76,7 +77,7 @@ COMMENT ON COLUMN skills.skill_name                 IS '';
 --
 CREATE TABLE resource_skills (
     resource_id                 NUMBER(10)          CONSTRAINT nn_resource_skills_resource  NOT NULL,
-    skill_id                    VARCHAR2(30)        CONSTRAINT nn_resource_skills_skill     NOT NULL,
+    skill_id                    NUMBER(10)          CONSTRAINT nn_resource_skills_skill     NOT NULL,
     --
     updated_by                  VARCHAR2(128),
     updated_at                  DATE,
@@ -108,7 +109,7 @@ CREATE TABLE projects (
     --
     project_name                VARCHAR2(256)       CONSTRAINT nn_projects_name         NOT NULL,
     description_                VARCHAR2(2000),
-    is_available                CHAR(1)             CONSTRAINT nn_projects_available    NOT NULL,
+    is_active                   CHAR(1)             CONSTRAINT nn_projects_active       NOT NULL,
     --
     owner_id                    NUMBER(10),
     manager_id                  NUMBER(10),
@@ -133,7 +134,7 @@ COMMENT ON TABLE projects IS 'List of projects';
 COMMENT ON COLUMN projects.project_id               IS '';
 COMMENT ON COLUMN projects.project_name             IS '';
 COMMENT ON COLUMN projects.description_             IS '';
-COMMENT ON COLUMN projects.is_available             IS '';
+COMMENT ON COLUMN projects.is_active                IS '';
 COMMENT ON COLUMN projects.owner_id                 IS '';
 COMMENT ON COLUMN projects.manager_id               IS '';
 
@@ -148,6 +149,7 @@ CREATE TABLE sprints (
     project_id                  NUMBER(10)          CONSTRAINT nn_sprints_project   NOT NULL,
     start_at                    DATE,
     end_at                      DATE,
+    is_active                   CHAR(1)             CONSTRAINT nn_sprints_active    NOT NULL,
     --
     updated_by                  VARCHAR2(128),
     updated_at                  DATE,
@@ -169,6 +171,7 @@ COMMENT ON COLUMN sprints.sprint_id                 IS '';
 COMMENT ON COLUMN sprints.project_id                IS '';
 COMMENT ON COLUMN sprints.start_at                  IS '';
 COMMENT ON COLUMN sprints.end_at                    IS '';
+COMMENT ON COLUMN sprints.is_active                 IS '';
 
 
 
