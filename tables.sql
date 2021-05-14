@@ -179,12 +179,12 @@ COMMENT ON COLUMN sprints.is_active                 IS '';
 -- TASKS
 --
 CREATE TABLE tasks (
-    task_id                     NUMBER(10)          CONSTRAINT nn_tasks_id          NOT NULL,
+    task_id                     NUMBER(10)          CONSTRAINT nn_tasks_id              NOT NULL,
     --
-    task_title                  VARCHAR2(256)       CONSTRAINT nn_tasks_title       NOT NULL,
-    description_                VARCHAR2(2000),
-    status                      VARCHAR2(30)        CONSTRAINT nn_tasks_status      NOT NULL,
-    priority_                   VARCHAR2(30),
+    task_title                  VARCHAR2(256)       CONSTRAINT nn_tasks_title           NOT NULL,
+    description_                VARCHAR2(2000)      CONSTRAINT nn_tasks_description     NOT NULL,
+    status                      VARCHAR2(30)        CONSTRAINT nn_tasks_status          NOT NULL,
+    priority_                   VARCHAR2(30)        CONSTRAINT nn_tasks_priority        NOT NULL,
     --
     project_id                  NUMBER(10),
     resource_id                 NUMBER(10),
