@@ -1,7 +1,7 @@
-CREATE OR REPLACE VIEW p200_sprints AS
+CREATE OR REPLACE VIEW p200_projects AS
 WITH t AS (
     SELECT
-        t.sprint_id,
+        t.project_id,
         COUNT(*)                                                    AS tasks,
         SUM(CASE WHEN t.status = 'READY'        THEN 1 ELSE 0 END)  AS tasks_ready,
         SUM(CASE WHEN t.status = 'IN-PROGRESS'  THEN 1 ELSE 0 END)  AS tasks_in_progress,
@@ -11,17 +11,28 @@ WITH t AS (
     JOIN sprints s
         ON s.sprint_id      = t.sprint_id
     WHERE s.is_active       = 'Y'
-    GROUP BY t.sprint_id
+    GROUP BY t.project_id
+),
+s AS (
+    SELECT
+        s.project_id,
+        COUNT(*)            AS sprints
+    FROM sprints s
+    WHERE s.is_active       = 'Y'
+    GROUP BY s.project_id
 )
 --
 SELECT
-    s.*,
+    p.*,
+    NVL(s.sprints, 0)               AS sprints,
     NVL(t.tasks, 0)                 AS tasks,
     NVL(t.tasks_ready, 0)           AS tasks_ready,
     NVL(t.tasks_in_progress, 0)     AS tasks_in_progress,
     NVL(t.tasks_complete, 0)        AS tasks_complete,
     NVL(t.resources, 0)             AS resources
-FROM sprints s
+FROM projects p
+LEFT JOIN s
+    ON s.project_id         = p.project_id
 LEFT JOIN t
-    ON t.sprint_id          = s.sprint_id;
+    ON t.project_id         = p.project_id;
 
