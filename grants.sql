@@ -11,6 +11,7 @@ GRANT SELECT ON pmp.p200_sprints_chart          TO pmp_apex;
 GRANT SELECT ON pmp.p300_resources              TO pmp_apex;
 GRANT SELECT ON pmp.p300_tasks                  TO pmp_apex;
 GRANT SELECT ON pmp.p310_skills                 TO pmp_apex;
+GRANT SELECT ON pmp.p310_resources              TO pmp_apex;
 --
 GRANT EXECUTE ON pmp.resources_skills_update    TO pmp_apex;
 
@@ -32,6 +33,7 @@ CREATE SYNONYM pmp_apex.p200_sprints_chart      FOR pmp.p200_sprints_chart;
 CREATE SYNONYM pmp_apex.p300_resources          FOR pmp.p300_resources;
 CREATE SYNONYM pmp_apex.p300_tasks              FOR pmp.p300_tasks;
 CREATE SYNONYM pmp_apex.p310_skills             FOR pmp.p310_skills;
+CREATE SYNONYM pmp_apex.p310_resources          FOR pmp.p310_resources;
 --
 CREATE SYNONYM pmp_apex.resources_skills_update FOR pmp.resources_skills_update;
 
