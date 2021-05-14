@@ -30,3 +30,20 @@ INSERT INTO resources (resource_id, person_name, description_, is_active) VALUES
 COMMIT;
 
 
+
+--
+-- SKILLS
+--
+--SELECT skill_code, skill_name FROM skills;
+INSERT INTO skills (skill_code, skill_name) VALUES ('DEPL',     'Deployment Manager');
+INSERT INTO skills (skill_code, skill_name) VALUES ('DEVOPS',   'Dev Ops Engineer');
+INSERT INTO skills (skill_code, skill_name) VALUES ('ARCH',     'Technical Architect');
+INSERT INTO skills (skill_code, skill_name) VALUES ('CC',       'Cloud Consultant');
+INSERT INTO skills (skill_code, skill_name) VALUES ('T',        'Tester');
+INSERT INTO skills (skill_code, skill_name) VALUES ('DEV',      'Developer');
+INSERT INTO skills (skill_code, skill_name) VALUES ('BA',       'Business Analytist');
+INSERT INTO skills (skill_code, skill_name) VALUES ('PM',       'Project Manager');
+--
+COMMIT;
+
+

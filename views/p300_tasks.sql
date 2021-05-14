@@ -1,17 +1,14 @@
 CREATE OR REPLACE VIEW p300_tasks AS
 SELECT
     t.*,
-    p.project_name
+    p.project_name,
+    s.start_at,
+    s.end_at
 FROM tasks t
-JOIN (
-    SELECT
-        s.sprint_id,
-        p.project_name
-    FROM sprints s
-    JOIN projects p
-        ON p.project_id     = p.project_id
-    WHERE p.is_active       = 'Y'
-        AND s.is_active     = 'Y'
-) p
-    ON p.sprint_id          = t.sprint_id;
+JOIN sprints s
+    ON s.sprint_id      = t.sprint_id
+JOIN projects p
+    ON p.project_id     = t.project_id
+WHERE p.is_active       = 'Y'
+    AND s.is_active     = 'Y';
 
