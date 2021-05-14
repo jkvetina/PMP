@@ -157,12 +157,15 @@ CREATE TABLE sprints (
     CONSTRAINT pk_sprints
         PRIMARY KEY (sprint_id),
     --
+    CONSTRAINT uq_sprints_start
+        UNIQUE (sprint_id, start_at),
+    --
     CONSTRAINT fk_sprints_project
         FOREIGN KEY (project_id)
         REFERENCES projects (project_id),
     --
     CONSTRAINT ch_sprints_start_end
-        CHECK (end_at > start_at)
+        CHECK (end_at >= start_at)
 );
 --
 COMMENT ON TABLE sprints IS 'List of fixed development periods';
