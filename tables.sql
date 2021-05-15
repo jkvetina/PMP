@@ -289,22 +289,40 @@ COMMENT ON COLUMN user_roles.is_active              IS '';
 --
 -- PROCEDURES, FUNCTIONS, PACKAGES
 --
-@"./procedures/resources_skills_update.sql"
 @"./procedures/recompile.sql"
---
-EXEC recompile;
+@"./procedures/set_sprint_boundaries.sql"
+@"./procedures/set_filters_on_grid.sql"
+@"./procedures/reset_filters_on_grid.sql"
+@"./procedures/resources_skills_update.sql"
 
 
 
 --
--- GRANTS (AS SYS)
+-- VIEWS
 --
---@"./scripts/grants.sql"
+@"./views/p200_projects.sql"
+@"./views/p210_sprints.sql"
+@"./views/p210_sprints_chart.sql"
+@"./views/p220_tasks.sql"
+@"./views/p300_resources.sql"
+@"./views/p300_tasks.sql"
+@"./views/p310_resources.sql"
+@"./views/p310_skills.sql"
+@"./views/p310_skills_assigned.sql"
 
 
 
 --
 -- SEED DATA
 --
+EXEC recompile;
+--
 @"./scripts/seed_data.sql"
+
+
+
+--
+-- GRANTS (AS SYS OR WITH CREATE ANY SYNONYM GRANT)
+--
+--@"./scripts/grants.sql"
 
