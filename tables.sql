@@ -26,6 +26,7 @@ DROP TABLE resource_skills  CASCADE CONSTRAINTS PURGE;
 DROP TABLE skills           CASCADE CONSTRAINTS PURGE;
 DROP TABLE resources        CASCADE CONSTRAINTS PURGE;
 DROP TABLE projects         CASCADE CONSTRAINTS PURGE;
+DROP TABLE user_roles       CASCADE CONSTRAINTS PURGE;
 */
 
 --
@@ -33,6 +34,7 @@ DROP TABLE projects         CASCADE CONSTRAINTS PURGE;
 --
 CREATE TABLE resources (
     resource_id                 NUMBER(10)          CONSTRAINT nn_resources_id          NOT NULL,
+    user_login                  VARCHAR2(128)       CONSTRAINT nn_resources_login       NOT NULL,
     --
     person_name                 VARCHAR2(128)       CONSTRAINT nn_resources_name        NOT NULL,
     person_phone                NUMBER(20),
@@ -44,12 +46,16 @@ CREATE TABLE resources (
     updated_at                  DATE,
     --
     CONSTRAINT pk_rescources
-        PRIMARY KEY (resource_id)
+        PRIMARY KEY (resource_id),
+    --
+    CONSTRAINT uq_rescources_login
+        UNIQUE (user_login)
 );
 --
 COMMENT ON TABLE resources IS 'List of people active for projects';
 --
 COMMENT ON COLUMN resources.resource_id             IS '';
+COMMENT ON COLUMN resources.user_login              IS 'Login used during signup to application';
 COMMENT ON COLUMN resources.person_name             IS '';
 COMMENT ON COLUMN resources.person_phone            IS '';
 COMMENT ON COLUMN resources.person_mail             IS '';
@@ -240,6 +246,34 @@ COMMENT ON COLUMN tasks.estimate                    IS '';
 
 
 --
+-- USER ROLES
+--
+CREATE TABLE user_roles (
+    user_login                  VARCHAR2(128)       CONSTRAINT nn_user_roles_user_login     NOT NULL,
+    role_code                   VARCHAR2(30)        CONSTRAINT nn_user_roles_role_code      NOT NULL,
+    --
+    is_active                   CHAR(1)             CONSTRAINT nn_user_roles_active         NOT NULL,
+    --
+    updated_by                  VARCHAR2(30),
+    updated_at                  DATE,
+    --
+    CONSTRAINT pk_user_roles
+        PRIMARY KEY (user_login, role_code),
+    --
+    CONSTRAINT fk_users_roles_user_login
+        FOREIGN KEY (user_login)
+        REFERENCES resources (user_login)
+);
+--
+COMMENT ON TABLE user_roles IS 'List of roles assigned to users';
+--
+COMMENT ON COLUMN user_roles.user_login             IS '';
+COMMENT ON COLUMN user_roles.role_code              IS '';
+COMMENT ON COLUMN user_roles.is_active              IS '';
+
+
+
+--
 -- TRIGGERS
 --
 @"./triggers/tasks__.sql"
@@ -248,6 +282,7 @@ COMMENT ON COLUMN tasks.estimate                    IS '';
 @"./triggers/skills__.sql"
 @"./triggers/resources__.sql"
 @"./triggers/projects__.sql"
+@"./triggers/user_roles__.sql"
 
 
 
