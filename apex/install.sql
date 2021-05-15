@@ -13,6 +13,8 @@ prompt --install
 @@application/shared_components/navigation/tabs/standard.sql
 @@application/shared_components/navigation/tabs/parent.sql
 @@application/shared_components/user_interface/lovs/login_remember_username.sql
+@@application/shared_components/user_interface/lovs/lov_projects.sql
+@@application/shared_components/user_interface/lovs/lov_projects_active.sql
 @@application/shared_components/user_interface/lovs/lov_resources.sql
 @@application/shared_components/user_interface/lovs/lov_resources_active.sql
 @@application/shared_components/user_interface/lovs/lov_task_priority.sql
