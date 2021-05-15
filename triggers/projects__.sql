@@ -42,7 +42,7 @@ COMPOUND TRIGGER
                 :NEW.project_id := project_id.NEXTVAL;
             END IF;
             --
-            :NEW.is_active      := CASE :NEW.status WHEN 'IN-ACTIVE' THEN 'N' ELSE 'Y' END;
+            :NEW.is_active      := CASE :NEW.status WHEN 'INACTIVE' THEN 'N' ELSE 'Y' END;
             --
             :NEW.updated_by     := in_updated_by;
             :NEW.updated_at     := in_updated_at;
