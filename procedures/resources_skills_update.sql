@@ -65,5 +65,11 @@ BEGIN
                 AND s.skill_code    = r_skill_map.skill_code;
         END IF;        
     END LOOP;
+EXCEPTION
+WHEN OTHERS THEN
+    --
+    -- @TODO: log errors
+    --
+    RAISE;
 END;
 /
