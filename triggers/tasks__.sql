@@ -20,9 +20,7 @@ COMPOUND TRIGGER
                         AND p.is_active     = 'Y';
                 EXCEPTION
                 WHEN NO_DATA_FOUND THEN
-                    IF INSERTING THEN
-                        RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_PROJECT');
-                    END IF;
+                    RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_PROJECT');
                 END;
             END IF;
 
@@ -36,10 +34,16 @@ COMPOUND TRIGGER
                         AND s.is_active     = 'Y';
                 EXCEPTION
                 WHEN NO_DATA_FOUND THEN
-                    IF INSERTING THEN
-                        RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_SPRINT');
-                    END IF;
+                    RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_SPRINT');
                 END;
+            END IF;
+
+            -- fill in missing project_id
+            IF :NEW.project_id IS NULL AND :NEW.sprint_id IS NOT NULL THEN
+                SELECT s.project_id
+                INTO :NEW.project_id
+                FROM sprints s
+                WHERE s.sprint_id = :NEW.sprint_id;
             END IF;
 
             -- check resource status
