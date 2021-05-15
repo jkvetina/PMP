@@ -22,12 +22,12 @@ wwv_flow_api.create_page(
 ,p_group_id=>wwv_flow_api.id(117057536870999705)
 ,p_page_template_options=>'#DEFAULT#'
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210514214116'
+,p_last_upd_yyyymmddhh24miss=>'20210515100342'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(115886278706766948)
 ,p_plug_name=>'Resources'
-,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--noBorder:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(116640167750910255)
 ,p_plug_display_sequence=>10
@@ -849,8 +849,8 @@ wwv_flow_api.create_ig_report_column(
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117140610765571822)
-,p_plug_name=>'Tasks'
-,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--scrollBody'
+,p_plug_name=>'Active Tasks'
+,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--noBorder:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(116640167750910255)
 ,p_plug_display_sequence=>20
@@ -861,12 +861,14 @@ wwv_flow_api.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_master_region_id=>wwv_flow_api.id(115886278706766948)
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_prn_content_disposition=>'ATTACHMENT'
+,p_prn_document_header=>'APEX'
 ,p_prn_units=>'INCHES'
 ,p_prn_paper_size=>'LETTER'
 ,p_prn_width=>11
 ,p_prn_height=>8.5
 ,p_prn_orientation=>'HORIZONTAL'
-,p_prn_page_header=>'Tasks'
+,p_prn_page_header=>'Active Tasks'
 ,p_prn_page_header_font_color=>'#000000'
 ,p_prn_page_header_font_family=>'Helvetica'
 ,p_prn_page_header_font_weight=>'normal'
@@ -1119,6 +1121,18 @@ wwv_flow_api.create_region_column(
 ,p_duplicate_value=>true
 ,p_include_in_export=>true
 );
+wwv_flow_api.component_end;
+end;
+/
+begin
+wwv_flow_api.component_begin (
+ p_version_yyyy_mm_dd=>'2020.10.01'
+,p_release=>'20.2.0.00.20'
+,p_default_workspace_id=>116577013837797376
+,p_default_application_id=>1000
+,p_default_id_offset=>0
+,p_default_owner=>'PMP_APEX'
+);
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(117141744410571833)
 ,p_name=>'UPDATED_BY'
@@ -1133,18 +1147,6 @@ wwv_flow_api.create_region_column(
 ,p_enable_sort_group=>false
 ,p_is_primary_key=>false
 ,p_include_in_export=>false
-);
-wwv_flow_api.component_end;
-end;
-/
-begin
-wwv_flow_api.component_begin (
- p_version_yyyy_mm_dd=>'2020.10.01'
-,p_release=>'20.2.0.00.20'
-,p_default_workspace_id=>116577013837797376
-,p_default_application_id=>1000
-,p_default_id_offset=>0
-,p_default_owner=>'PMP_APEX'
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(117141832954571834)

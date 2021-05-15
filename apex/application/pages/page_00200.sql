@@ -22,13 +22,13 @@ wwv_flow_api.create_page(
 ,p_group_id=>wwv_flow_api.id(117057451695999058)
 ,p_page_template_options=>'#DEFAULT#'
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210514185545'
+,p_last_upd_yyyymmddhh24miss=>'20210515100156'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117065606992133430)
 ,p_plug_name=>'Projects'
 ,p_region_name=>'PROJECTS'
-,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--noBorder:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(116640167750910255)
 ,p_plug_display_sequence=>10
@@ -164,6 +164,7 @@ wwv_flow_api.create_region_column(
 ,p_lov_id=>wwv_flow_api.id(117128425878517015)
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
+,p_lov_null_text=>'-'
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -201,6 +202,7 @@ wwv_flow_api.create_region_column(
 ,p_lov_id=>wwv_flow_api.id(117128425878517015)
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
+,p_lov_null_text=>'-'
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -619,7 +621,7 @@ wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117066940357133443)
 ,p_plug_name=>'Sprints'
 ,p_region_name=>'SPRINTS'
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--noBorder:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(116640167750910255)
 ,p_plug_display_sequence=>30
@@ -1108,7 +1110,7 @@ wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117138953702571805)
 ,p_plug_name=>'Tasks'
 ,p_region_name=>'TASKS'
-,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--noBorder:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(116640167750910255)
 ,p_plug_display_sequence=>40
@@ -1338,6 +1340,7 @@ wwv_flow_api.create_region_column(
 ,p_lov_id=>wwv_flow_api.id(117128425878517015)
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
+,p_lov_null_text=>'-'
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -1588,7 +1591,7 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117665483749022436)
 ,p_plug_name=>'Active Sprints Overview'
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--noBorder:t-Region--scrollBody'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>wwv_flow_api.id(116640167750910255)
 ,p_plug_display_sequence=>20
