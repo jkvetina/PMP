@@ -19,7 +19,13 @@ WITH t AS (
 ),
 s AS (
     SELECT *
-    FROM resource_skills r
+    FROM (
+        -- wrap to avoid doubled lines due to update cols
+        SELECT
+            r.resource_id,
+            r.skill_code
+        FROM resource_skills r
+    )
     PIVOT (
         COUNT(skill_code)
         FOR skill_code IN (
