@@ -22,7 +22,7 @@ wwv_flow_api.create_page(
 ,p_group_id=>wwv_flow_api.id(117057451695999058)
 ,p_page_template_options=>'#DEFAULT#'
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210515100156'
+,p_last_upd_yyyymmddhh24miss=>'20210515125013'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117065606992133430)
@@ -161,7 +161,7 @@ wwv_flow_api.create_region_column(
 ,p_attribute_06=>'0'
 ,p_is_required=>false
 ,p_lov_type=>'SHARED'
-,p_lov_id=>wwv_flow_api.id(117128425878517015)
+,p_lov_id=>wwv_flow_api.id(118333506065192720)
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
 ,p_lov_null_text=>'-'
@@ -199,7 +199,7 @@ wwv_flow_api.create_region_column(
 ,p_attribute_06=>'0'
 ,p_is_required=>false
 ,p_lov_type=>'SHARED'
-,p_lov_id=>wwv_flow_api.id(117128425878517015)
+,p_lov_id=>wwv_flow_api.id(118333506065192720)
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
 ,p_lov_null_text=>'-'
@@ -1337,8 +1337,8 @@ wwv_flow_api.create_region_column(
 ,p_attribute_06=>'0'
 ,p_is_required=>false
 ,p_lov_type=>'SHARED'
-,p_lov_id=>wwv_flow_api.id(117128425878517015)
-,p_lov_display_extra=>false
+,p_lov_id=>wwv_flow_api.id(118333506065192720)
+,p_lov_display_extra=>true
 ,p_lov_display_null=>true
 ,p_lov_null_text=>'-'
 ,p_enable_filter=>true

@@ -17,11 +17,12 @@ wwv_flow_api.create_page(
 ,p_name=>'Sprints'
 ,p_alias=>'SPRINTS'
 ,p_step_title=>'Sprints'
+,p_warn_on_unsaved_changes=>'N'
 ,p_autocomplete_on_off=>'OFF'
 ,p_group_id=>wwv_flow_api.id(117057451695999058)
 ,p_page_template_options=>'#DEFAULT#'
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210515100128'
+,p_last_upd_yyyymmddhh24miss=>'20210515132348'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117874682736527438)
@@ -175,7 +176,7 @@ wwv_flow_api.create_region_column(
 ,p_attribute_01=>'CUSTOM'
 ,p_attribute_02=>'Y'
 ,p_attribute_03=>'N'
-,p_is_required=>true
+,p_is_required=>false
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -187,6 +188,8 @@ wwv_flow_api.create_region_column(
 ,p_enable_control_break=>true
 ,p_enable_hide=>true
 ,p_is_primary_key=>false
+,p_default_type=>'STATIC'
+,p_default_expression=>'Y'
 ,p_duplicate_value=>true
 ,p_include_in_export=>true
 );
@@ -389,9 +392,8 @@ wwv_flow_api.create_interactive_grid(
  p_id=>wwv_flow_api.id(117874777028527439)
 ,p_internal_uid=>117874777028527439
 ,p_is_editable=>true
-,p_edit_operations=>'i:u:d'
+,p_edit_operations=>'u:d'
 ,p_lost_update_check_type=>'VALUES'
-,p_add_row_if_empty=>false
 ,p_submit_checked_rows=>false
 ,p_lazy_loading=>false
 ,p_requires_filter=>false
