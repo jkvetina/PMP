@@ -31,6 +31,8 @@ INSERT INTO resources (resource_id, person_name, description_, status, is_active
 INSERT INTO resources (resource_id, person_name, description_, status, is_active) VALUES (resource_id.NEXTVAL, 'Andesaurus', 'Among the long-necked dinosaurs, Andesaurus were the real giants! Also known as the vine lizards, these dinosaurs were herbivores. They could grow up to 13 meters in height, 40 meters in length, and 80 tons in weight.', 'Y');
 INSERT INTO resources (resource_id, person_name, description_, status, is_active) VALUES (resource_id.NEXTVAL, 'Raptorex', 'Raptorex, more commonly known as Raptor, is another rather famous carnivore in the world of dinosaurs. They originate from Asia and some of the most important Raptorex fossils have been located in China and Mongolia.', 'Y');
 --
+-- @TODO: ADD 25 MORE
+--
 COMMIT;
 
 

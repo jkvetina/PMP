@@ -65,6 +65,6 @@ END;
 --
 -- GRANT PROCEDURES MANUALLY
 --
-GRANT EXECUTE ON    pmp.resources_skills_update         TO pmp_apex;
-CREATE SYNONYM      pmp_apex.resources_skills_update    FOR pmp.resources_skills_update;
+GRANT EXECUTE ON            pmp.resources_skills_update         TO pmp_apex;
+CREATE OR REPLACE SYNONYM   pmp_apex.resources_skills_update    FOR pmp.resources_skills_update;
 

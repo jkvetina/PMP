@@ -38,6 +38,8 @@ BEGIN
     r_skill_map.resource_id     := in_resource_id;
     --
     FOR c IN (
+        -- assume skills wont change that much, we could do dynamic SQL if they do
+        -- we could also store them as columns, this is kind of half way
         SELECT 'DEPL'   AS skill_code, in_skill_depl    AS value FROM DUAL UNION ALL
         SELECT 'DEVOPS' AS skill_code, in_skill_devops  AS value FROM DUAL UNION ALL
         SELECT 'ARCH'   AS skill_code, in_skill_arch    AS value FROM DUAL UNION ALL

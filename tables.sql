@@ -249,3 +249,27 @@ COMMENT ON COLUMN tasks.estimate                    IS '';
 @"./triggers/resources__.sql"
 @"./triggers/projects__.sql"
 
+
+
+--
+-- PROCEDURES, FUNCTIONS, PACKAGES
+--
+@"./procedures/resources_skills_update.sql"
+@"./procedures/recompile.sql"
+--
+EXEC recompile;
+
+
+
+--
+-- GRANTS (AS SYS)
+--
+--@"./scripts/grants.sql"
+
+
+
+--
+-- SEED DATA
+--
+@"./scripts/seed_data.sql"
+
