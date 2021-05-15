@@ -238,3 +238,14 @@ COMMENT ON COLUMN tasks.sprint_id                   IS '';
 COMMENT ON COLUMN tasks.estimate                    IS '';
 
 
+
+--
+-- TRIGGERS
+--
+@"./triggers/tasks__.sql"
+@"./triggers/sprints__.sql"
+@"./triggers/resource_skills__.sql"
+@"./triggers/skills__.sql"
+@"./triggers/resources__.sql"
+@"./triggers/projects__.sql"
+
