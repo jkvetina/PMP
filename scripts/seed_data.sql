@@ -47,3 +47,17 @@ INSERT INTO skills (skill_code, skill_name) VALUES ('PM',       'Project Manager
 COMMIT;
 
 
+
+--
+-- PROJECTS
+--
+--SELECT project_id, project_name, description_, is_active, owner_id, manager_id FROM projects;
+INSERT INTO projects (project_id, project_name, description_, is_active, owner_id, manager_id) VALUES ('200', 'Project Management in 2 days', 'Homework', 'Y', '10109', '10112');
+INSERT INTO projects (project_id, project_name, description_, is_active, owner_id, manager_id) VALUES ('201', 'Chair Booking', 'Booking chairs in the office', 'Y', '10104', '10108');
+INSERT INTO projects (project_id, project_name, description_, is_active, owner_id, manager_id) VALUES ('202', 'DC Layout Tool', 'Depot visualisation', 'Y', '10113', '10114');
+INSERT INTO projects (project_id, project_name, description_, is_active, owner_id, manager_id) VALUES ('203', 'PO Book', 'Purchase orders', 'Y', '10107', '10122');
+INSERT INTO projects (project_id, project_name, description_, is_active, owner_id, manager_id) VALUES ('300', 'Car Pool', 'Booking company pool/shared cars', 'Y', '10117', '10100');
+--
+COMMIT;
+
+
