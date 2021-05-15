@@ -28,16 +28,18 @@ COMPOUND TRIGGER
             END;
 
             -- check resource status
-            BEGIN
-                SELECT r.resource_id
-                INTO :NEW.resource_id
-                FROM resources r
-                WHERE r.resource_id     = :NEW.resource_id
-                    AND r.is_active     = 'Y';
-            EXCEPTION
-            WHEN NO_DATA_FOUND THEN
-                RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_RESOURCE');
-            END;
+            IF :NEW.resource_id IS NOT NULL THEN
+                BEGIN
+                    SELECT r.resource_id
+                    INTO :NEW.resource_id
+                    FROM resources r
+                    WHERE r.resource_id     = :NEW.resource_id
+                        AND r.is_active     = 'Y';
+                EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_RESOURCE');
+                END;
+            END IF;
 
             -- assign sequence if needed
             IF :NEW.task_id IS NULL THEN
