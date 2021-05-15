@@ -8,6 +8,10 @@ WITH t AS (
         SUM(CASE WHEN t.status = 'IN-PROGRESS'  THEN 1 ELSE 0 END)  AS tasks_in_progress,
         SUM(CASE WHEN t.status = 'COMPLETE'     THEN 1 ELSE 0 END)  AS tasks_complete,
         SUM(CASE WHEN t.resource_id IS NOT NULL THEN 1 ELSE 0 END)  AS resources
+        --
+        --MAX(CASE WHEN p.project_id = APEX_UTIL.GET_SESSION_STATE('P300_PROJECT_ID')
+        --        OR APEX_UTIL.GET_SESSION_STATE('P300_PROJECT_ID') IS NULL
+        --    THEN 'Y' ELSE 'N' END) AS project_match
     FROM tasks t
     JOIN sprints s
         ON s.sprint_id      = t.sprint_id
@@ -42,6 +46,7 @@ s AS (
 )
 SELECT
     r.*,
+    r.person_name                   AS resource__,
     --
     CASE WHEN s.skill_depl      > 0 THEN 'Y' ELSE 'N' END AS skill_depl,
     CASE WHEN s.skill_devops    > 0 THEN 'Y' ELSE 'N' END AS skill_devops,
@@ -59,7 +64,12 @@ SELECT
     NVL(t.tasks_complete, 0)        AS tasks_complete
 FROM resources r
 LEFT JOIN t
-    ON t.resource_id    = r.resource_id
+    ON t.resource_id        = r.resource_id
 LEFT JOIN s
-    ON s.resource_id    = r.resource_id;
+    ON s.resource_id        = r.resource_id
+WHERE (
+    --APEX_UTIL.GET_SESSION_STATE('P300_PROJECT_ID') IS NULL
+    --OR t.project_match = 'Y'
+    1 = 1
+);
 
