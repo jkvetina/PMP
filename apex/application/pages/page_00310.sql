@@ -20,13 +20,15 @@ wwv_flow_api.create_page(
 ,p_warn_on_unsaved_changes=>'N'
 ,p_autocomplete_on_off=>'OFF'
 ,p_group_id=>wwv_flow_api.id(117057536870999705)
+,p_step_template=>wwv_flow_api.id(118353195933943148)
 ,p_page_template_options=>'#DEFAULT#'
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210515101304'
+,p_last_upd_yyyymmddhh24miss=>'20210515202008'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117063711212133411)
 ,p_plug_name=>'Skills'
+,p_region_name=>'SKILLS'
 ,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--noBorder:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(116640167750910255)
@@ -326,6 +328,7 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117064604534133420)
 ,p_plug_name=>'Resources'
+,p_region_name=>'RESOURCES'
 ,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--noBorder:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(116640167750910255)
@@ -480,6 +483,7 @@ wwv_flow_api.create_region_column(
 ,p_value_alignment=>'LEFT'
 ,p_attribute_05=>'BOTH'
 ,p_is_required=>false
+,p_max_length=>2000
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -509,7 +513,7 @@ wwv_flow_api.create_region_column(
 ,p_attribute_01=>'CUSTOM'
 ,p_attribute_02=>'Y'
 ,p_attribute_03=>'N'
-,p_is_required=>true
+,p_is_required=>false
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -677,6 +681,7 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(118255128517838805)
 ,p_plug_name=>'Assigned Skills'
+,p_region_name=>'ASSIGNED_SKILLS'
 ,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--noBorder:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(116640167750910255)
