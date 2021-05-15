@@ -23,7 +23,7 @@ wwv_flow_api.create_page(
 ,p_step_template=>wwv_flow_api.id(118353195933943148)
 ,p_page_template_options=>'#DEFAULT#'
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210515195907'
+,p_last_upd_yyyymmddhh24miss=>'20210515225331'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117065606992133430)
@@ -338,7 +338,7 @@ wwv_flow_api.create_region_column(
 ,p_display_sequence=>140
 ,p_value_alignment=>'RIGHT'
 ,p_attribute_02=>'VALUE'
-,p_link_target=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.::P220_FILTER_SPRINT,P220_FILTER_RESOURCE,P220_FILTER_STATUS:,,'
+,p_link_target=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.::P220_FILTER_SPRINT,P220_FILTER_RESOURCE,P220_FILTER_STATUS,P0_PROJECT_ID:,,,&PROJECT_ID.'
 ,p_link_text=>'&TASKS.'
 ,p_link_attributes=>'style="font-weight: bold;"'
 ,p_enable_filter=>true
@@ -365,7 +365,7 @@ wwv_flow_api.create_region_column(
 ,p_display_sequence=>180
 ,p_value_alignment=>'RIGHT'
 ,p_attribute_02=>'VALUE'
-,p_link_target=>'f?p=&APP_ID.:300:&SESSION.::&DEBUG.:::'
+,p_link_target=>'f?p=&APP_ID.:300:&SESSION.::&DEBUG.::P0_PROJECT_ID:&PROJECT_ID.'
 ,p_link_text=>'&RESOURCES.'
 ,p_link_attributes=>'style="font-weight: bold;"'
 ,p_enable_filter=>true
