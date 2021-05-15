@@ -80,6 +80,39 @@ COMMIT;
 
 
 --
+-- GENERATE SOME SKILLS
+--
+BEGIN
+    FOR c IN (
+        SELECT skill_code, ROUND(DBMS_RANDOM.VALUE(1, 10), 0) AS rows_limit
+        FROM skills
+    ) LOOP
+        FOR d IN (
+            SELECT *
+            FROM (
+                SELECT r.resource_id
+                FROM resources r
+                ORDER BY DBMS_RANDOM.RANDOM
+            )
+            WHERE ROWNUM < c.rows_limit
+        ) LOOP
+            BEGIN
+                INSERT INTO resource_skills (resource_id, skill_code)
+                VALUES (d.resource_id, c.skill_code);
+            EXCEPTION
+            WHEN DUP_VAL_ON_INDEX THEN
+                NULL;
+            END;
+        END LOOP;
+    END LOOP;
+    --
+    COMMIT;
+END;
+/
+
+
+
+--
 -- PROJECTS AND TASKS
 --
 -- SELECT project_id, project_name, description_, status, is_active, owner_id, manager_id FROM projects;
