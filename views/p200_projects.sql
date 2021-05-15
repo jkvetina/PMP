@@ -8,9 +8,9 @@ WITH t AS (
         SUM(CASE WHEN t.status = 'COMPLETE'     THEN 1 ELSE 0 END)  AS tasks_complete,
         SUM(CASE WHEN t.resource_id IS NOT NULL THEN 1 ELSE 0 END)  AS resources
     FROM tasks t
-    JOIN sprints s
+    LEFT JOIN sprints s
         ON s.sprint_id      = t.sprint_id
-    WHERE s.is_active       = 'Y'
+        AND s.is_active     = 'Y'
     GROUP BY t.project_id
 ),
 s AS (
