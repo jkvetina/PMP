@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW p200_sprints AS
+CREATE OR REPLACE VIEW p210_sprints AS
 WITH t AS (
     SELECT
         t.sprint_id,
@@ -23,5 +23,6 @@ SELECT
     NVL(t.resources, 0)             AS resources
 FROM sprints s
 LEFT JOIN t
-    ON t.sprint_id          = s.sprint_id;
+    ON t.sprint_id      = s.sprint_id
+WHERE s.project_id      = APEX_UTIL.GET_SESSION_STATE('P0_PROJECT_ID');
 
