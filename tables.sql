@@ -54,7 +54,7 @@ COMMENT ON COLUMN resources.is_active               IS '';
 -- SKILLS
 --
 CREATE TABLE skills (
-    skill_id                    NUMBER(10)          CONSTRAINT nn_skills_id     NOT NULL,
+    skill_code                  VARCHAR2(8)         CONSTRAINT nn_skills_code   NOT NULL,
     --
     skill_name                  VARCHAR2(64)        CONSTRAINT nn_skills_name   NOT NULL,
     --
@@ -62,12 +62,12 @@ CREATE TABLE skills (
     updated_at                  DATE,
     --
     CONSTRAINT pk_skills
-        PRIMARY KEY (skill_id)
+        PRIMARY KEY (skill_code)
 );
 --
 COMMENT ON TABLE skills IS 'List of skills for resources';
 --
-COMMENT ON COLUMN skills.skill_id                   IS '';
+COMMENT ON COLUMN skills.skill_code                 IS '';
 COMMENT ON COLUMN skills.skill_name                 IS '';
 
 
@@ -77,27 +77,27 @@ COMMENT ON COLUMN skills.skill_name                 IS '';
 --
 CREATE TABLE resource_skills (
     resource_id                 NUMBER(10)          CONSTRAINT nn_resource_skills_resource  NOT NULL,
-    skill_id                    NUMBER(10)          CONSTRAINT nn_resource_skills_skill     NOT NULL,
+    skill_code                  VARCHAR2(8)         CONSTRAINT nn_resource_skills_skill     NOT NULL,
     --
     updated_by                  VARCHAR2(128),
     updated_at                  DATE,
     --
     CONSTRAINT pk_resource_skills
-        PRIMARY KEY (resource_id, skill_id),
+        PRIMARY KEY (resource_id, skill_code),
     --
     CONSTRAINT fk_resource_skills_resource
         FOREIGN KEY (resource_id)
         REFERENCES resources (resource_id),
     --
     CONSTRAINT fk_resource_skills_skill
-        FOREIGN KEY (skill_id)
-        REFERENCES skills (skill_id)
+        FOREIGN KEY (skill_code)
+        REFERENCES skills (skill_code)
 );
 --
 COMMENT ON TABLE resource_skills IS 'List of skills assigned to resources';
 --
 COMMENT ON COLUMN resource_skills.resource_id       IS '';
-COMMENT ON COLUMN resource_skills.skill_id          IS '';
+COMMENT ON COLUMN resource_skills.skill_code        IS '';
 
 
 
@@ -224,8 +224,5 @@ COMMENT ON COLUMN tasks.project_id                  IS '';
 COMMENT ON COLUMN tasks.resource_id                 IS '';
 COMMENT ON COLUMN tasks.sprint_id                   IS '';
 COMMENT ON COLUMN tasks.estimate                    IS '';
-
-
-
 
 
