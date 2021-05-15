@@ -66,5 +66,10 @@ END;
 -- GRANT PROCEDURES MANUALLY
 --
 GRANT EXECUTE ON            pmp.resources_skills_update         TO pmp_apex;
+GRANT EXECUTE ON            pmp.set_filters_on_grid             TO pmp_apex;
+GRANT EXECUTE ON            pmp.reset_filters_on_grid           TO pmp_apex;
+--
 CREATE OR REPLACE SYNONYM   pmp_apex.resources_skills_update    FOR pmp.resources_skills_update;
+CREATE OR REPLACE SYNONYM   pmp_apex.set_filters_on_grid        FOR pmp.set_filters_on_grid;
+CREATE OR REPLACE SYNONYM   pmp_apex.reset_filters_on_grid      FOR pmp.reset_filters_on_grid;
 
