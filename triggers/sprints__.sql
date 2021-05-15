@@ -30,6 +30,8 @@ COMPOUND TRIGGER
             --
             :NEW.updated_by     := in_updated_by;
             :NEW.updated_at     := in_updated_at;
+            --
+            :NEW.sprint_name    := TO_CHAR(:NEW.start_at, 'YYYY-MM-DD') || ' - ' || TO_CHAR(:NEW.end_at, 'YYYY-MM-DD');
 
             -- append new/changed row
             changed_rows.EXTEND(1);

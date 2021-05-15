@@ -8,10 +8,6 @@ COMPOUND TRIGGER
     BEFORE EACH ROW IS
     BEGIN
         IF NOT DELETING THEN
-            IF :NEW.skill_id IS NULL THEN
-                :NEW.skill_id := skill_id.NEXTVAL;
-            END IF;
-            --
             :NEW.updated_by     := in_updated_by;
             :NEW.updated_at     := in_updated_at;
         END IF;

@@ -1,6 +1,13 @@
 --
 -- SEQUENCES
 --
+/*
+DROP SEQUENCE resource_id;
+DROP SEQUENCE project_id;
+DROP SEQUENCE task_id;
+DROP SEQUENCE sprint_id;
+DROP SEQUENCE skill_id;
+*/
 CREATE SEQUENCE resource_id     CACHE 100 START WITH 10000;
 CREATE SEQUENCE project_id      CACHE 100 START WITH 100;
 CREATE SEQUENCE task_id         CACHE 100 START WITH 100000;
@@ -9,8 +16,9 @@ CREATE SEQUENCE skill_id        CACHE 100 START WITH 1000;
 
 
 
-
-
+--
+-- TABLES
+--
 /*
 DROP TABLE tasks            CASCADE CONSTRAINTS PURGE;
 DROP TABLE sprints          CASCADE CONSTRAINTS PURGE;
@@ -109,6 +117,7 @@ CREATE TABLE projects (
     --
     project_name                VARCHAR2(256)       CONSTRAINT nn_projects_name         NOT NULL,
     description_                VARCHAR2(2000),
+    status                      VARCHAR2(30)        CONSTRAINT nn_projects_status       NOT NULL,
     is_active                   CHAR(1)             CONSTRAINT nn_projects_active       NOT NULL,
     --
     owner_id                    NUMBER(10),
@@ -134,7 +143,8 @@ COMMENT ON TABLE projects IS 'List of projects';
 COMMENT ON COLUMN projects.project_id               IS '';
 COMMENT ON COLUMN projects.project_name             IS '';
 COMMENT ON COLUMN projects.description_             IS '';
-COMMENT ON COLUMN projects.is_active                IS '';
+COMMENT ON COLUMN projects.status                   IS '';
+COMMENT ON COLUMN projects.is_active                IS 'Availability representation/flag of Status column';
 COMMENT ON COLUMN projects.owner_id                 IS '';
 COMMENT ON COLUMN projects.manager_id               IS '';
 
@@ -146,9 +156,10 @@ COMMENT ON COLUMN projects.manager_id               IS '';
 CREATE TABLE sprints (
     sprint_id                   NUMBER(10)          CONSTRAINT nn_sprints_id        NOT NULL,
     --
+    sprint_name                 VARCHAR2(30)        CONSTRAINT nn_sprints_name      NOT NULL,
     project_id                  NUMBER(10)          CONSTRAINT nn_sprints_project   NOT NULL,
-    start_at                    DATE,
-    end_at                      DATE,
+    start_at                    DATE                CONSTRAINT nn_sprints_start     NOT NULL,
+    end_at                      DATE                CONSTRAINT nn_sprints_end       NOT NULL,
     is_active                   CHAR(1)             CONSTRAINT nn_sprints_active    NOT NULL,
     --
     updated_by                  VARCHAR2(128),
@@ -171,6 +182,7 @@ CREATE TABLE sprints (
 COMMENT ON TABLE sprints IS 'List of fixed development periods';
 --
 COMMENT ON COLUMN sprints.sprint_id                 IS '';
+COMMENT ON COLUMN sprints.sprint_name               IS 'Name used in LOV for easy sprint change';
 COMMENT ON COLUMN sprints.project_id                IS '';
 COMMENT ON COLUMN sprints.start_at                  IS '';
 COMMENT ON COLUMN sprints.end_at                    IS '';
