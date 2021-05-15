@@ -1,40 +1,70 @@
-GRANT SELECT, UPDATE, INSERT, DELETE ON pmp.tasks               TO pmp_apex;
-GRANT SELECT, UPDATE, INSERT, DELETE ON pmp.sprints             TO pmp_apex;
-GRANT SELECT, UPDATE, INSERT, DELETE ON pmp.resource_skills     TO pmp_apex;
-GRANT SELECT, UPDATE, INSERT, DELETE ON pmp.skills              TO pmp_apex;
-GRANT SELECT, UPDATE, INSERT, DELETE ON pmp.resources           TO pmp_apex;
-GRANT SELECT, UPDATE, INSERT, DELETE ON pmp.projects            TO pmp_apex;
 --
-GRANT SELECT ON pmp.p200_projects               TO pmp_apex;
-GRANT SELECT ON pmp.p200_sprints                TO pmp_apex;
-GRANT SELECT ON pmp.p200_sprints_chart          TO pmp_apex;
-GRANT SELECT ON pmp.p300_resources              TO pmp_apex;
-GRANT SELECT ON pmp.p300_tasks                  TO pmp_apex;
-GRANT SELECT ON pmp.p310_skills                 TO pmp_apex;
-GRANT SELECT ON pmp.p310_resources              TO pmp_apex;
+-- GRANT TABLES AND VIEWS DYNAMICALLY
 --
-GRANT EXECUTE ON pmp.resources_skills_update    TO pmp_apex;
+DECLARE
+    in_owner    CONSTANT all_tables.owner%TYPE := 'PMP';
+    in_apex     CONSTANT all_tables.owner%TYPE := 'PMP_APEX';
+    --
+    v_grants    VARCHAR2(2000);
+    v_sql       VARCHAR2(2000);
+BEGIN
+    -- create grants
+    FOR c IN (
+        SELECT t.object_name, t.object_type
+        FROM all_objects t
+        WHERE t.owner           = in_owner
+            AND t.object_type   IN ('TABLE', 'VIEW')
+        ORDER BY t.object_type, t.object_name
+    ) LOOP
+        -- desired grants
+        v_grants := CASE c.object_type
+            WHEN 'TABLE'    THEN 'SELECT, UPDATE, INSERT, DELETE'
+            WHEN 'VIEW'     THEN 'SELECT'
+            END;
+
+        -- revoke all first
+        v_sql := 'REVOKE ALL ON ' ||
+            LOWER(in_owner || '.' || RPAD(c.object_name, 30)) ||
+            ' FROM ' || LOWER(in_apex);
+        --
+        EXECUTE IMMEDIATE v_sql;
+
+        -- create grant finally
+        v_sql := 'GRANT ' || v_grants || ' ON ' ||
+            LOWER(in_owner || '.' || RPAD(c.object_name, 30)) ||
+            ' TO ' || LOWER(in_apex);
+        --
+        DBMS_OUTPUT.PUT_LINE(v_sql || ';');
+        EXECUTE IMMEDIATE v_sql;
+    END LOOP;
+
+    -- drop existing synonyms
+    --
+    --
+
+    -- create synonyms in apex schema
+    FOR c IN (
+        SELECT t.object_name, t.object_type
+        FROM all_objects t
+        WHERE t.owner           = in_owner
+            AND t.object_type   IN ('TABLE', 'VIEW')
+        ORDER BY t.object_type, t.object_name
+    ) LOOP
+        v_sql := 'CREATE OR REPLACE SYNONYM ' ||
+            LOWER(in_apex || '.' || RPAD(c.object_name, 30)) ||
+            ' FOR ' || LOWER(in_owner || '.' || c.object_name);
+        --
+        DBMS_OUTPUT.PUT_LINE(v_sql || ';');
+        EXECUTE IMMEDIATE v_sql;
+    END LOOP;
+END;
+/
 
 
 
 --
--- RUN AS SYS
+-- GRANT PROCEDURES MANUALLY
 --
-CREATE SYNONYM pmp_apex.tasks                   FOR pmp.tasks;
-CREATE SYNONYM pmp_apex.sprints                 FOR pmp.sprints;
-CREATE SYNONYM pmp_apex.resource_skills         FOR pmp.resource_skills;
-CREATE SYNONYM pmp_apex.skills                  FOR pmp.skills;
-CREATE SYNONYM pmp_apex.resources               FOR pmp.resources;
-CREATE SYNONYM pmp_apex.projects                FOR pmp.projects;
---
-CREATE SYNONYM pmp_apex.p200_projects           FOR pmp.p200_projects;
-CREATE SYNONYM pmp_apex.p200_sprints            FOR pmp.p200_sprints;
-CREATE SYNONYM pmp_apex.p200_sprints_chart      FOR pmp.p200_sprints_chart;
-CREATE SYNONYM pmp_apex.p300_resources          FOR pmp.p300_resources;
-CREATE SYNONYM pmp_apex.p300_tasks              FOR pmp.p300_tasks;
-CREATE SYNONYM pmp_apex.p310_skills             FOR pmp.p310_skills;
-CREATE SYNONYM pmp_apex.p310_resources          FOR pmp.p310_resources;
---
-CREATE SYNONYM pmp_apex.resources_skills_update FOR pmp.resources_skills_update;
-
+GRANT EXECUTE ON    pmp.resources_skills_update         TO pmp_apex;
+CREATE SYNONYM      pmp_apex.resources_skills_update    FOR pmp.resources_skills_update;
 
