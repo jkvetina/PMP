@@ -6,7 +6,7 @@ SELECT
     r.person_mail,
     r.description_,
     r.is_active,
-    s.skill_code    
+    s.skill_code
 FROM resources r
 JOIN resource_skills s
     ON s.resource_id        = r.resource_id;
