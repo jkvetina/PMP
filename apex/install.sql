@@ -30,6 +30,7 @@ prompt --install
 @@application/shared_components/user_interface/templates/page/wizard_modal_dialog.sql
 @@application/shared_components/user_interface/templates/page/standard.sql
 @@application/shared_components/user_interface/templates/page/minimal_no_navigation.sql
+@@application/shared_components/user_interface/templates/page/standard_q.sql
 @@application/shared_components/user_interface/templates/button/icon.sql
 @@application/shared_components/user_interface/templates/button/text.sql
 @@application/shared_components/user_interface/templates/button/text_with_icon.sql
