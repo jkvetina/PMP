@@ -10,22 +10,37 @@ COMPOUND TRIGGER
     BEFORE EACH ROW IS
     BEGIN
         IF NOT DELETING THEN
-            -- get project_id and check inactive project or sprint
-            BEGIN
-                SELECT s.project_id
-                INTO :NEW.project_id
-                FROM sprints s
-                JOIN projects p
-                    ON p.project_id     = s.project_id
-                WHERE s.sprint_id       = :NEW.sprint_id
-                    AND s.is_active     = 'Y'
-                    AND p.is_active     = 'Y';
-            EXCEPTION
-            WHEN NO_DATA_FOUND THEN
-                IF INSERTING THEN
-                    RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_PROJECT_OR_SPRINT');
-                END IF;
-            END;
+            -- check sprint status
+            IF :NEW.project_id IS NOT NULL THEN
+                BEGIN
+                    SELECT p.project_id
+                    INTO :NEW.project_id
+                    FROM projects p
+                    WHERE p.project_id      = :NEW.project_id
+                        AND p.is_active     = 'Y';
+                EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    IF INSERTING THEN
+                        RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_PROJECT');
+                    END IF;
+                END;
+            END IF;
+
+            -- check sprint status
+            IF :NEW.sprint_id IS NOT NULL THEN
+                BEGIN
+                    SELECT s.sprint_id
+                    INTO :NEW.sprint_id
+                    FROM sprints s
+                    WHERE s.sprint_id       = :NEW.sprint_id
+                        AND s.is_active     = 'Y';
+                EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    IF INSERTING THEN
+                        RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_SPRINT');
+                    END IF;
+                END;
+            END IF;
 
             -- check resource status
             IF :NEW.resource_id IS NOT NULL THEN
