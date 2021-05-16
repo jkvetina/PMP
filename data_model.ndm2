@@ -2491,7 +2491,7 @@
       "paperHeight": 1,
       "tableFont": "Fira Code Regular",
       "tableFontSize": 14,
-      "isBalckWhite": false,
+      "isBalckWhite": true,
       "showDBSchemaName": false,
       "showViewRelations": true,
       "notation": "default",
@@ -2502,7 +2502,7 @@
           "type": "table",
           "schemaName": "CHR",
           "tableName": "PROJECTS",
-          "x": 294,
+          "x": 300,
           "y": 309,
           "width": 255,
           "height": 240,
@@ -2518,7 +2518,7 @@
           "type": "table",
           "schemaName": "CHR",
           "tableName": "RESOURCES",
-          "x": 614,
+          "x": 620,
           "y": 309,
           "width": 253,
           "height": 240,
@@ -2534,7 +2534,7 @@
           "type": "table",
           "schemaName": "CHR",
           "tableName": "RESOURCE_SKILLS",
-          "x": 920,
+          "x": 926,
           "y": 368,
           "width": 237,
           "height": 135,
@@ -2550,7 +2550,7 @@
           "type": "table",
           "schemaName": "CHR",
           "tableName": "SKILLS",
-          "x": 922,
+          "x": 928,
           "y": 564,
           "width": 237,
           "height": 135,
@@ -2566,7 +2566,7 @@
           "type": "table",
           "schemaName": "CHR",
           "tableName": "SPRINTS",
-          "x": 14,
+          "x": 13,
           "y": 640,
           "width": 237,
           "height": 219,
@@ -2582,7 +2582,7 @@
           "type": "table",
           "schemaName": "CHR",
           "tableName": "TASKS",
-          "x": 304,
+          "x": 302,
           "y": 610,
           "width": 253,
           "height": 282,
@@ -2598,7 +2598,7 @@
           "type": "table",
           "schemaName": "CHR",
           "tableName": "USER_ROLES",
-          "x": 624,
+          "x": 630,
           "y": 89,
           "width": 235,
           "height": 156,
@@ -2621,16 +2621,16 @@
           "visible": true,
           "vertices": [
             {
-              "x": 564,
+              "x": 570,
               "y": 444
             },
             {
-              "x": 599,
+              "x": 605,
               "y": 444
             }
           ],
           "label": {
-            "x": 560,
+            "x": 566,
             "y": 446,
             "width": 186,
             "height": 31,
@@ -2655,16 +2655,16 @@
           "visible": true,
           "vertices": [
             {
-              "x": 564,
+              "x": 570,
               "y": 414
             },
             {
-              "x": 599,
+              "x": 605,
               "y": 414
             }
           ],
           "label": {
-            "x": 560,
+            "x": 566,
             "y": 416,
             "width": 169,
             "height": 31,
@@ -2689,16 +2689,16 @@
           "visible": true,
           "vertices": [
             {
-              "x": 905,
+              "x": 911,
               "y": 431
             },
             {
-              "x": 882,
+              "x": 888,
               "y": 431
             }
           ],
           "label": {
-            "x": 766,
+            "x": 772,
             "y": 433,
             "width": 254,
             "height": 31,
@@ -2723,16 +2723,16 @@
           "visible": true,
           "vertices": [
             {
-              "x": 1044,
+              "x": 1050,
               "y": 518
             },
             {
-              "x": 1044,
+              "x": 1050,
               "y": 549
             }
           ],
           "label": {
-            "x": 836,
+            "x": 842,
             "y": 508,
             "width": 212,
             "height": 31,
@@ -2757,20 +2757,20 @@
           "visible": true,
           "vertices": [
             {
-              "x": 144,
+              "x": 143,
               "y": 625
             },
             {
-              "x": 144,
+              "x": 143,
               "y": 429
             },
             {
-              "x": 279,
+              "x": 285,
               "y": 429
             }
           ],
           "label": {
-            "x": 152,
+            "x": 151,
             "y": 635,
             "width": 166,
             "height": 31,
@@ -2795,16 +2795,16 @@
           "visible": true,
           "vertices": [
             {
-              "x": 424,
+              "x": 430,
               "y": 595
             },
             {
-              "x": 424,
+              "x": 430,
               "y": 564
             }
           ],
           "label": {
-            "x": 432,
+            "x": 438,
             "y": 605,
             "width": 152,
             "height": 31,
@@ -2829,20 +2829,20 @@
           "visible": true,
           "vertices": [
             {
-              "x": 572,
+              "x": 570,
               "y": 770
             },
             {
-              "x": 745,
+              "x": 751,
               "y": 770
             },
             {
-              "x": 745,
+              "x": 751,
               "y": 564
             }
           ],
           "label": {
-            "x": 568,
+            "x": 566,
             "y": 772,
             "width": 166,
             "height": 31,
@@ -2867,16 +2867,16 @@
           "visible": true,
           "vertices": [
             {
-              "x": 289,
+              "x": 287,
               "y": 770
             },
             {
-              "x": 266,
+              "x": 265,
               "y": 770
             }
           ],
           "label": {
-            "x": 305,
+            "x": 303,
             "y": 772,
             "width": 138,
             "height": 31,
@@ -2901,16 +2901,16 @@
           "visible": true,
           "vertices": [
             {
-              "x": 738,
+              "x": 744,
               "y": 260
             },
             {
-              "x": 738,
+              "x": 744,
               "y": 294
             }
           ],
           "label": {
-            "x": 746,
+            "x": 752,
             "y": 250,
             "width": 233,
             "height": 31,
