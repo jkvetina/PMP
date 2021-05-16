@@ -23,7 +23,7 @@ wwv_flow_api.create_page(
 ,p_step_template=>wwv_flow_api.id(118353195933943148)
 ,p_page_template_options=>'#DEFAULT#'
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516082255'
+,p_last_upd_yyyymmddhh24miss=>'20210516102028'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117872772390527419)
@@ -703,9 +703,9 @@ wwv_flow_api.create_page_process(
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'SET_FILTERS'
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'reset_filters_on_grid(''TASKS'');',
+'grid.reset_filters(''TASKS'');',
 '--',
-'set_filters_on_grid (',
+'grid.set_filters (',
 '    in_static_id            => ''TASKS'',',
 '    in_column_name          => ''SPRINT__'',',
 '    in_filter_value         => APEX_UTIL.GET_SESSION_STATE(''P220_FILTER_SPRINT''),',
@@ -713,7 +713,7 @@ wwv_flow_api.create_page_process(
 '    in_check_item           => ''P220_FILTER_SPRINT''',
 ');',
 '--',
-'set_filters_on_grid (',
+'grid.set_filters (',
 '    in_static_id            => ''TASKS'',',
 '    in_column_name          => ''RESOURCE__'',',
 '    in_filter_value         => APEX_UTIL.GET_SESSION_STATE(''P220_FILTER_RESOURCE''),',

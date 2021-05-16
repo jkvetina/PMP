@@ -23,7 +23,7 @@ wwv_flow_api.create_page(
 ,p_step_template=>wwv_flow_api.id(118353195933943148)
 ,p_page_template_options=>'#DEFAULT#'
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516084232'
+,p_last_upd_yyyymmddhh24miss=>'20210516102044'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(115886278706766948)
@@ -1624,16 +1624,15 @@ wwv_flow_api.create_page_process(
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'SET_FILTERS'
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'reset_filters_on_grid(''RESOURCES'');',
+'grid.reset_filters(''RESOURCES'');',
 '--',
-'IF APEX_UTIL.GET_SESSION_STATE(''P300_FILTER_RESOURCE'') IS NOT NULL THEN',
-'    set_filters_on_grid (',
-'        in_static_id            => ''RESOURCES'',',
-'        in_column_name          => ''RESOURCE__'',',
-'        in_filter_value         => APEX_UTIL.GET_SESSION_STATE(''P300_FILTER_RESOURCE''),',
-'        in_operator             => ''EQ''',
-'    );',
-'END IF;',
+'grid.set_filters (',
+'    in_static_id            => ''RESOURCES'',',
+'    in_column_name          => ''RESOURCE__'',',
+'    in_filter_value         => APEX_UTIL.GET_SESSION_STATE(''P300_FILTER_RESOURCE''),',
+'    in_operator             => ''EQ'',',
+'    in_check_item           => ''P300_FILTER_RESOURCE''',
+');',
 ''))
 ,p_process_clob_language=>'PLSQL'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
