@@ -22,9 +22,9 @@ wwv_flow_api.create_page(
 ,p_group_id=>wwv_flow_api.id(117057536870999705)
 ,p_step_template=>wwv_flow_api.id(118353195933943148)
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_api.id(118801843615136462)
+,p_required_role=>wwv_flow_api.id(118801526420131876)
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516105214'
+,p_last_upd_yyyymmddhh24miss=>'20210516122721'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117063711212133411)
@@ -227,6 +227,9 @@ wwv_flow_api.create_interactive_grid(
 ,p_internal_uid=>117063833313133412
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_api.id(118811038434647571)
+,p_update_authorization_scheme=>wwv_flow_api.id(118811038434647571)
+,p_delete_authorization_scheme=>wwv_flow_api.id(118811038434647571)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>false
 ,p_submit_checked_rows=>false
@@ -614,6 +617,7 @@ wwv_flow_api.create_interactive_grid(
 ,p_internal_uid=>117064710496133421
 ,p_is_editable=>true
 ,p_edit_operations=>'u'
+,p_update_authorization_scheme=>wwv_flow_api.id(118801526420131876)
 ,p_lost_update_check_type=>'VALUES'
 ,p_submit_checked_rows=>false
 ,p_lazy_loading=>false
