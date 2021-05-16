@@ -19,7 +19,7 @@ CREATE OR REPLACE PACKAGE BODY grid AS
         region_id               apex_application_page_regions.region_id%TYPE;
     BEGIN
         -- convert static_id to region_id
-        SELECT region_id
+        SELECT MIN(region_id)
         INTO region_id
         FROM apex_application_page_regions
         WHERE application_id    = auth.get_app_id()
