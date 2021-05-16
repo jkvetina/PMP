@@ -1,5 +1,7 @@
 CREATE OR REPLACE PROCEDURE resources_skills_update (
+    in_action           CHAR,
     in_resource_id      resources.resource_id%TYPE,
+    in_user_login       resources.user_login%TYPE,
     in_person_name      resources.person_name%TYPE,
     in_person_phone     resources.person_phone%TYPE,
     in_person_mail      resources.person_mail%TYPE,
@@ -17,13 +19,29 @@ CREATE OR REPLACE PROCEDURE resources_skills_update (
     r_resource          resources%ROWTYPE;
     r_skill_map         resource_skills%ROWTYPE;
 BEGIN
+    -- delete resource and mapped skills
+    IF in_action = 'D' THEN
+        DELETE FROM resource_skills s
+        WHERE s.resource_id = in_resource_id;
+        --
+        DELETE FROM resources r
+        WHERE r.resource_id = in_resource_id;
+        --
+        RETURN;
+    END IF;
+
     -- prepare resource
     r_resource.resource_id      := in_resource_id;
+    r_resource.user_login       := in_user_login;
     r_resource.person_name      := in_person_name;
     r_resource.person_phone     := in_person_phone;
     r_resource.person_mail      := in_person_mail;
     r_resource.description_     := in_description_;
     r_resource.is_active        := in_is_active;
+    --
+    IF r_resource.resource_id IS NULL THEN
+        r_resource.resource_id := resource_id.NEXTVAL;
+    END IF;
     --
     UPDATE resources r
     SET ROW = r_resource
@@ -35,7 +53,7 @@ BEGIN
     END IF;
 
     -- prepare skills
-    r_skill_map.resource_id     := in_resource_id;
+    r_skill_map.resource_id     := r_resource.resource_id;
     --
     FOR c IN (
         -- assume skills wont change that much, we could do dynamic SQL if they do
