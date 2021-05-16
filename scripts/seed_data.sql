@@ -131,20 +131,60 @@ INSERT INTO tasks (task_id, task_title, description_, status, priority_, project
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Available resources in Grids + trigger check?', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Dashboard velocity', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Kanban board with 3 task status columns & Cards', 'Ideally do drag and drop for status change', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Check APEX Advisor', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Turn on Session State Protection on Items', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 --
 INSERT INTO projects (project_id, project_name, description_, status, is_active) VALUES (project_id.NEXTVAL, 'Chair Booking', 'Booking chairs in the office', 'ACTIVE', 'Y');
 --
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Implement SSO', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Fix performance issues on page 174', 'DESCRIPTION', 'COMPLETE', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Generate documentation', 'DESCRIPTION', 'COMPLETE', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Create diagram for data model', 'DESCRIPTION', 'COMPLETE', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Create Shadow schema', 'DESCRIPTION', 'COMPLETE', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Write unit tests for 80% code coverage', 'DESCRIPTION', 'COMPLETE', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Add offices for India', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Add offices and floors for UK', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Assign new roles to UK, IN', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Retest auth roles', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 --
 INSERT INTO projects (project_id, project_name, description_, status, is_active) VALUES (project_id.NEXTVAL, 'DC Layout Tool', 'Depot visualisation', 'ACTIVE', 'Y');
 --
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Real world task #1', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Real world task #2', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Real world task #3', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Real world task #4', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Real world task #5', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Real world task #6', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Real world task #7', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Real world task #8', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Real world task #9', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Real world task #10', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+--
 INSERT INTO projects (project_id, project_name, description_, status, is_active) VALUES (project_id.NEXTVAL, 'PO Book', 'Purchase orders', 'ACTIVE', 'Y');
 --
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Check business requirements', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Design data model', 'DESCRIPTION', 'COMPLETE', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Python to change existing XLSX template', 'DESCRIPTION', 'READY', 'HIGH', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Create app prototype', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Adjust data model', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Create pages', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Create app proles', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Implement real DB roles', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Security audit', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Order pentests', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 --
 INSERT INTO projects (project_id, project_name, description_, status, is_active) VALUES (project_id.NEXTVAL, 'Car Pool', 'Booking company pool/shared cars', 'ACTIVE', 'Y');
+--
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Extend data model of Booking app', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Create navigation', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Schedule meeting with business', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Present prototype', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Gather seed data', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Create notification system', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Add javascript confirms', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Fix dynamic action on page 200', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Just another task', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Finally the end', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 --
 COMMIT;
 
@@ -168,6 +208,73 @@ SET p.owner_id = (
             ON r.user_login     = u.user_login
         WHERE u.role_code       = 'MANAGER'
     );
+--
+COMMIT;
+
+
+
+--
+-- GENERATE SOME SPRINTS, ASSIGN FEW TASKS
+--
+BEGIN
+    FOR c IN (
+        SELECT p.project_id, NULL AS sprint_id
+        FROM projects p
+    ) LOOP
+        c.sprint_id := sprint_id.NEXTVAL;
+        --
+        INSERT INTO sprints (sprint_id, sprint_name, project_id, start_at, end_at, is_active)
+        VALUES (
+            c.sprint_id,
+            'TRIGGER',
+            c.project_id,
+            TRUNC(SYSDATE) - 20,
+            NEXT_DAY(TRUNC(SYSDATE) - 20, 'MONDAY') - 1 + 7,
+            'Y'
+        );
+        --
+        UPDATE tasks t
+        SET t.sprint_id         = c.sprint_id
+        WHERE t.project_id      = c.project_id
+            AND t.sprint_id     IS NULL
+            AND ROWNUM          <= 4;
+        --
+        UPDATE sprints s
+        SET s.is_active         = 'N'
+        WHERE s.sprint_id       = c.sprint_id;
+        --
+        c.sprint_id := sprint_id.NEXTVAL;
+        --
+        INSERT INTO sprints (sprint_id, sprint_name, project_id, start_at, end_at, is_active)
+        VALUES (
+            c.sprint_id,
+            'TRIGGER',
+            c.project_id,
+            NEXT_DAY(TRUNC(SYSDATE) - 20, 'MONDAY') + 7,
+            NEXT_DAY(TRUNC(SYSDATE) - 20, 'MONDAY') + 7 + 13,
+            'Y'
+        );
+        --
+        UPDATE tasks t
+        SET t.sprint_id         = c.sprint_id
+        WHERE t.project_id      = c.project_id
+            AND t.sprint_id     IS NULL
+            AND ROWNUM          <= 6;
+    END LOOP;
+    --
+    COMMIT;
+END;
+/
+
+
+
+--
+-- DEACTIVATE ONE PROJECT
+--
+UPDATE projects p
+SET p.status            = 'INACTIVE',
+    p.is_active         = 'N'
+WHERE p.project_name    = 'DC Layout Tool';
 --
 COMMIT;
 
