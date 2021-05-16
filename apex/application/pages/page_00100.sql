@@ -23,7 +23,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(118801843615136462)
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516193501'
+,p_last_upd_yyyymmddhh24miss=>'20210516200831'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(118816127265809112)
@@ -34,6 +34,9 @@ wwv_flow_api.create_page_plug(
 ,p_plug_display_sequence=>20
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
+,p_query_type=>'TABLE'
+,p_query_table=>'P100_DASHBOARD_TASKS'
+,p_include_rowid_column=>false
 ,p_plug_source_type=>'NATIVE_JET_CHART'
 ,p_plug_query_num_rows=>15
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
@@ -62,48 +65,66 @@ wwv_flow_api.create_jet_chart(
 ,p_legend_position=>'bottom'
 );
 wwv_flow_api.create_jet_chart_series(
- p_id=>wwv_flow_api.id(118816336432809114)
+ p_id=>wwv_flow_api.id(118817176473809122)
 ,p_chart_id=>wwv_flow_api.id(118816274966809113)
 ,p_seq=>10
-,p_name=>'Tasks Todo'
-,p_data_source_type=>'TABLE'
-,p_query_table=>'P100_DASHBOARD_TASKS'
-,p_include_rowid_column=>false
-,p_items_value_column_name=>'TASKS_TODO'
+,p_name=>'Tasks Waiting'
+,p_location=>'REGION_SOURCE'
+,p_items_value_column_name=>'TASKS_WAITING'
 ,p_items_label_column_name=>'PROJECT_NAME'
+,p_color=>'#8E8E93'
 ,p_assigned_to_y2=>'off'
 ,p_stack_category=>'Tasks'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'auto'
+,p_link_target=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.::P0_PROJECT_ID:&PROJECT_ID.'
+,p_link_target_type=>'REDIRECT_PAGE'
+);
+wwv_flow_api.create_jet_chart_series(
+ p_id=>wwv_flow_api.id(118816336432809114)
+,p_chart_id=>wwv_flow_api.id(118816274966809113)
+,p_seq=>20
+,p_name=>'Tasks Planned'
+,p_location=>'REGION_SOURCE'
+,p_items_value_column_name=>'TASKS_PLANNED'
+,p_items_label_column_name=>'PROJECT_NAME'
+,p_color=>'#34AADC'
+,p_assigned_to_y2=>'off'
+,p_stack_category=>'Tasks'
+,p_items_label_rendered=>true
+,p_items_label_position=>'auto'
+,p_link_target=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.::P0_PROJECT_ID:&PROJECT_ID.'
+,p_link_target_type=>'REDIRECT_PAGE'
 );
 wwv_flow_api.create_jet_chart_series(
  p_id=>wwv_flow_api.id(118817024990809121)
 ,p_chart_id=>wwv_flow_api.id(118816274966809113)
-,p_seq=>20
+,p_seq=>30
 ,p_name=>'Tasks Done'
-,p_data_source_type=>'TABLE'
-,p_query_table=>'P100_DASHBOARD_TASKS'
-,p_include_rowid_column=>false
+,p_location=>'REGION_SOURCE'
 ,p_items_value_column_name=>'TASKS_DONE'
 ,p_items_label_column_name=>'PROJECT_NAME'
+,p_color=>'#007AFF'
 ,p_assigned_to_y2=>'off'
 ,p_stack_category=>'Tasks'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'auto'
+,p_link_target=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.::P0_PROJECT_ID:&PROJECT_ID.'
+,p_link_target_type=>'REDIRECT_PAGE'
 );
 wwv_flow_api.create_jet_chart_series(
  p_id=>wwv_flow_api.id(118816883270809119)
 ,p_chart_id=>wwv_flow_api.id(118816274966809113)
-,p_seq=>30
+,p_seq=>40
 ,p_name=>'Resources'
-,p_data_source_type=>'TABLE'
-,p_query_table=>'P100_DASHBOARD_TASKS'
-,p_include_rowid_column=>false
+,p_location=>'REGION_SOURCE'
 ,p_items_value_column_name=>'RESOURCES'
 ,p_items_label_column_name=>'PROJECT_NAME'
 ,p_assigned_to_y2=>'off'
 ,p_stack_category=>'Resources'
 ,p_items_label_rendered=>false
+,p_link_target=>'f?p=&APP_ID.:300:&SESSION.::&DEBUG.::P0_PROJECT_ID:&PROJECT_ID.'
+,p_link_target_type=>'REDIRECT_PAGE'
 );
 wwv_flow_api.create_jet_chart_axis(
  p_id=>wwv_flow_api.id(118816771500809118)
