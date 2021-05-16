@@ -4,6 +4,29 @@ COMPOUND TRIGGER
 
     in_updated_by       CONSTANT user_roles.updated_by%TYPE     := auth.get_user_login();
     in_updated_at       CONSTANT user_roles.updated_at%TYPE     := SYSDATE;
+    --
+    is_sponzor          CHAR;
+
+
+
+    BEFORE STATEMENT IS
+    BEGIN
+        BEGIN
+            SELECT 'Y'
+            INTO is_sponzor
+            FROM user_roles r
+            WHERE r.user_login      = in_updated_by
+                AND r.role_code     = 'SPONZOR';
+        EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            NULL;
+        END;
+    EXCEPTION
+    WHEN apex.app_exception THEN
+        RAISE;
+    WHEN OTHERS THEN
+        apex.raise_error('UNHANDLED_ERROR');
+    END BEFORE STATEMENT;
 
 
 
@@ -74,22 +97,25 @@ COMPOUND TRIGGER
                 EXCEPTION
                 WHEN NO_DATA_FOUND THEN
                     -- check for sponzor thingy
-                    BEGIN
-                        SELECT in_updated_by
-                        INTO :NEW.updated_by
-                        FROM user_roles r
-                        WHERE r.user_login      = in_updated_by
-                            AND r.role_code     = 'SPONZOR';
-                    EXCEPTION
-                    WHEN NO_DATA_FOUND THEN
+                    IF is_sponzor IS NULL THEN
                         apex.raise_error('PERMISSION_ISSUE');
-                    END;
+                    END IF;
                 END;
             END IF;
 
             --
             -- @TODO: we should also check updates/deletes
             --
+
+            -- sponzors cant assign/change sprint
+            IF UPDATING AND is_sponzor = 'Y' THEN
+                IF :NEW.sprint_id IS NOT NULL THEN
+                    apex.raise_error('CANT_ASSIGN_SPRINT');
+                END IF;
+                IF :NEW.sprint_id != :OLD.sprint_id THEN
+                    apex.raise_error('CANT_CHANGE_SPRINT');
+                END IF;
+            END IF;
 
             -- assign sequence if needed
             IF :NEW.task_id IS NULL THEN
