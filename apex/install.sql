@@ -7,7 +7,10 @@ prompt --install
 @@application/shared_components/files/app_icon_svg.sql
 @@application/shared_components/files/app_icon_css.sql
 @@application/plugin_settings.sql
-@@application/shared_components/security/authorizations/administration_rights.sql
+@@application/shared_components/security/authorizations/is_developer.sql
+@@application/shared_components/security/authorizations/is_owner_manager.sql
+@@application/shared_components/security/authorizations/is_owner_manager_sponzor.sql
+@@application/shared_components/security/authorizations/is_resource.sql
 @@application/shared_components/navigation/navigation_bar.sql
 @@application/shared_components/logic/application_settings.sql
 @@application/shared_components/navigation/tabs/standard.sql

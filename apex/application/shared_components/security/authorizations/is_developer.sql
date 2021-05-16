@@ -1,7 +1,7 @@
-prompt --application/shared_components/security/authorizations/administration_rights
+prompt --application/shared_components/security/authorizations/is_developer
 begin
 --   Manifest
---     SECURITY SCHEME: Administration Rights
+--     SECURITY SCHEME: IS_DEVELOPER
 --   Manifest End
 wwv_flow_api.component_begin (
  p_version_yyyy_mm_dd=>'2020.10.01'
@@ -12,12 +12,12 @@ wwv_flow_api.component_begin (
 ,p_default_owner=>'PMP_APEX'
 );
 wwv_flow_api.create_security_scheme(
- p_id=>wwv_flow_api.id(116727892319910511)
-,p_name=>'Administration Rights'
+ p_id=>wwv_flow_api.id(118801118665102153)
+,p_name=>'IS_DEVELOPER'
 ,p_scheme_type=>'NATIVE_FUNCTION_BODY'
-,p_attribute_01=>'return true;'
-,p_error_message=>'Insufficient privileges, user is not an Administrator'
-,p_caching=>'BY_USER_BY_PAGE_VIEW'
+,p_attribute_01=>'RETURN auth.is_developer() = ''Y'';'
+,p_error_message=>'AUTH_ERROR'
+,p_caching=>'BY_USER_BY_SESSION'
 );
 wwv_flow_api.component_end;
 end;
