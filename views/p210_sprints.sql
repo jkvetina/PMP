@@ -20,8 +20,15 @@ SELECT
     NVL(t.tasks_ready, 0)           AS tasks_ready,
     NVL(t.tasks_in_progress, 0)     AS tasks_in_progress,
     NVL(t.tasks_complete, 0)        AS tasks_complete,
-    NVL(t.resources, 0)             AS resources
+    NVL(t.resources, 0)             AS resources,
+    --
+    CASE
+        WHEN s.is_active = 'Y' AND p.is_active = 'Y' AND auth.get_resource_id() IN (p.owner_id, p.manager_id)
+            THEN 'IU'
+        END AS auth_management
 FROM sprints s
+JOIN projects p
+    ON p.project_id     = s.project_id
 LEFT JOIN t
     ON t.sprint_id      = s.sprint_id
 WHERE s.project_id      = apex.get_item('P0_PROJECT_ID');

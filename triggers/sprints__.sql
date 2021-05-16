@@ -24,6 +24,21 @@ COMPOUND TRIGGER
     BEFORE EACH ROW IS
     BEGIN
         IF NOT DELETING THEN
+            -- check if new sprint is created by project owner/manager
+            IF INSERTING THEN
+                BEGIN
+                    SELECT in_updated_by
+                    INTO :NEW.updated_by
+                    FROM projects p
+                    WHERE p.project_id      = :NEW.project_id
+                        AND auth.get_resource_id(in_updated_by) IN (p.owner_id, p.manager_id);
+                EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    apex.raise_error('PERMISSION_ISSUE');
+                END;
+            END IF;
+
+            -- proceed
             IF :NEW.sprint_id IS NULL THEN
                 :NEW.sprint_id := sprint_id.NEXTVAL;
             END IF;

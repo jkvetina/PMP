@@ -24,7 +24,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(118801843615136462)
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516132010'
+,p_last_upd_yyyymmddhh24miss=>'20210516180546'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(235461447057206738)
@@ -79,6 +79,22 @@ wwv_flow_api.create_region_column(
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HIDDEN'
 ,p_display_sequence=>40
+,p_attribute_01=>'Y'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>true
+,p_is_primary_key=>false
+,p_include_in_export=>false
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(118816087326809111)
+,p_name=>'AUTH_MANAGEMENT'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'AUTH_MANAGEMENT'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HIDDEN'
+,p_display_sequence=>160
 ,p_attribute_01=>'Y'
 ,p_use_as_row_header=>false
 ,p_enable_sort_group=>true
@@ -391,6 +407,7 @@ wwv_flow_api.create_interactive_grid(
 ,p_internal_uid=>235461515156206739
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_edit_row_operations_column=>'AUTH_MANAGEMENT'
 ,p_add_authorization_scheme=>wwv_flow_api.id(118801319213109057)
 ,p_update_authorization_scheme=>wwv_flow_api.id(118801319213109057)
 ,p_delete_authorization_scheme=>wwv_flow_api.id(118801319213109057)
@@ -438,6 +455,14 @@ wwv_flow_api.create_ig_report_column(
 ,p_view_id=>wwv_flow_api.id(235539134801646301)
 ,p_display_seq=>13
 ,p_column_id=>wwv_flow_api.id(118258658935838840)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(118887241541745385)
+,p_view_id=>wwv_flow_api.id(235539134801646301)
+,p_display_seq=>14
+,p_column_id=>wwv_flow_api.id(118816087326809111)
 ,p_is_visible=>true
 ,p_is_frozen=>false
 );

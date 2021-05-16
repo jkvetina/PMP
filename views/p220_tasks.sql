@@ -7,7 +7,7 @@ SELECT
     r.person_name       AS resource__,
     --
     CASE
-        WHEN p.is_active = 'Y' AND t.resource_id IN (p.owner_id, p.manager_id)
+        WHEN p.is_active = 'Y' AND auth.get_resource_id() IN (p.owner_id, p.manager_id)
             THEN 'IU'
         END AS auth_management,
     --
