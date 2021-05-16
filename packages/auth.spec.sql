@@ -13,7 +13,9 @@ CREATE OR REPLACE PACKAGE auth AS
 
 
 
-    FUNCTION get_resource_id
+    FUNCTION get_resource_id (
+        in_user_login       resources.user_login%TYPE := NULL
+    )
     RETURN resources.resource_id%TYPE;
 
 

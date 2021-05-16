@@ -14,7 +14,9 @@ CREATE OR REPLACE PACKAGE BODY auth AS
 
 
 
-    FUNCTION get_resource_id
+    FUNCTION get_resource_id (
+        in_user_login       resources.user_login%TYPE := NULL
+    )
     RETURN resources.resource_id%TYPE
     AS
         out_id      resources.resource_id%TYPE;
@@ -22,7 +24,7 @@ CREATE OR REPLACE PACKAGE BODY auth AS
         SELECT r.resource_id
         INTO out_id
         FROM resources r
-        WHERE r.user_login = auth.get_user_login();
+        WHERE r.user_login = COALESCE(in_user_login, auth.get_user_login());
         --
         RETURN out_id;
     EXCEPTION
