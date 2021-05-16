@@ -108,13 +108,10 @@ COMPOUND TRIGGER
             --
 
             -- sponzors cant assign/change sprint
-            IF UPDATING AND is_sponzor = 'Y' THEN
-                IF :NEW.sprint_id IS NOT NULL THEN
-                    apex.raise_error('CANT_ASSIGN_SPRINT');
-                END IF;
-                IF :NEW.sprint_id != :OLD.sprint_id THEN
-                    apex.raise_error('CANT_CHANGE_SPRINT');
-                END IF;
+            IF is_sponzor = 'Y' AND :NEW.sprint_id IS NOT NULL THEN
+                apex.raise_error('CANT_ASSIGN_SPRINT');
+            ELSIF is_sponzor = 'Y' AND UPDATING AND :NEW.sprint_id != :OLD.sprint_id THEN
+                apex.raise_error('CANT_CHANGE_SPRINT');
             END IF;
 
             -- assign sequence if needed
