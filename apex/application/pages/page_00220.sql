@@ -24,7 +24,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(118801843615136462)
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516131830'
+,p_last_upd_yyyymmddhh24miss=>'20210516162734'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117872772390527419)
@@ -1412,7 +1412,7 @@ wwv_flow_api.create_page_process(
 'grid.set_filters (',
 '    in_static_id            => ''TASKS'',',
 '    in_column_name          => ''SPRINT__'',',
-'    in_filter_value         => APEX_UTIL.GET_SESSION_STATE(''P220_FILTER_SPRINT''),',
+'    in_filter_value         => apex.get_item(''P220_FILTER_SPRINT''),',
 '    in_operator             => ''EQ'',',
 '    in_check_item           => ''P220_FILTER_SPRINT''',
 ');',
@@ -1420,7 +1420,7 @@ wwv_flow_api.create_page_process(
 'grid.set_filters (',
 '    in_static_id            => ''TASKS'',',
 '    in_column_name          => ''RESOURCE__'',',
-'    in_filter_value         => APEX_UTIL.GET_SESSION_STATE(''P220_FILTER_RESOURCE''),',
+'    in_filter_value         => apex.get_item(''P220_FILTER_RESOURCE''),',
 '    in_operator             => ''EQ'',',
 '    in_check_item           => ''P220_FILTER_RESOURCE''',
 ');',

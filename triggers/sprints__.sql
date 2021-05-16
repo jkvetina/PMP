@@ -2,8 +2,8 @@ CREATE OR REPLACE TRIGGER sprints__
 FOR UPDATE OR INSERT OR DELETE ON sprints
 COMPOUND TRIGGER
 
-    in_updated_by       CONSTANT sprints.updated_by%TYPE    := COALESCE(APEX_APPLICATION.G_USER, USER);
-    in_updated_at       CONSTANT sprints.updated_at%TYPE    := SYSDATE;
+    in_updated_by       CONSTANT user_roles.updated_by%TYPE     := auth.get_user_login();
+    in_updated_at       CONSTANT user_roles.updated_at%TYPE     := SYSDATE;
 
     -- collection to store new/changed rows
     TYPE r_rows
@@ -44,7 +44,7 @@ COMPOUND TRIGGER
         END IF;
     EXCEPTION
     WHEN OTHERS THEN
-        RAISE;
+        apex.raise_error('UNHANDLED_ERROR');
     END BEFORE EACH ROW;
 
 
@@ -71,7 +71,7 @@ COMPOUND TRIGGER
         END IF;
     EXCEPTION
     WHEN OTHERS THEN
-        RAISE;
+        apex.raise_error('UNHANDLED_ERROR');
     END AFTER STATEMENT;
 
 END;

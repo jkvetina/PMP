@@ -13,6 +13,6 @@ SELECT
     TRUNC(SYSDATE) - 7                                  AS all_start,
     MAX(s.end_at) OVER (PARTITION BY s.project_id) + 7  AS all_end
 FROM p210_sprints s
-WHERE s.project_id      = APEX_UTIL.GET_SESSION_STATE('P0_PROJECT_ID')
+WHERE s.project_id      = apex.get_item('P0_PROJECT_ID')
     AND s.is_active     = 'Y';
 

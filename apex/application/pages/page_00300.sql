@@ -24,7 +24,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(118801526420131876)
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516122601'
+,p_last_upd_yyyymmddhh24miss=>'20210516162812'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(115886278706766948)
@@ -1615,7 +1615,7 @@ wwv_flow_api.create_page_process(
 '        AND a.page_id       = NV(''APP_PAGE_ID'')',
 '        AND a.item_name     LIKE ''P%\_HEADER'' ESCAPE ''\''',
 ') LOOP',
-'    APEX_UTIL.SET_SESSION_STATE(c.item_name, c.skill_name);',
+'    apex.set_item(c.item_name, c.skill_name);',
 'END LOOP;',
 ''))
 ,p_process_clob_language=>'PLSQL'
@@ -1633,7 +1633,7 @@ wwv_flow_api.create_page_process(
 'grid.set_filters (',
 '    in_static_id            => ''RESOURCES'',',
 '    in_column_name          => ''RESOURCE__'',',
-'    in_filter_value         => APEX_UTIL.GET_SESSION_STATE(''P300_FILTER_RESOURCE''),',
+'    in_filter_value         => apex.get_item(''P300_FILTER_RESOURCE''),',
 '    in_operator             => ''EQ'',',
 '    in_check_item           => ''P300_FILTER_RESOURCE''',
 ');',

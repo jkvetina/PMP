@@ -10,10 +10,10 @@ BEGIN
     FROM (
         SELECT NVL(MAX(s.end_at) + 1, TRUNC(SYSDATE)) AS min_start
         FROM sprints s
-        WHERE s.project_id = APEX_UTIL.GET_SESSION_STATE('P0_PROJECT_ID')
+        WHERE s.project_id = apex.get_item('P0_PROJECT_ID')
     );
     --
-    APEX_UTIL.SET_SESSION_STATE('P210_NEXT_START',  TO_CHAR(next_start, 'YYYY-MM-DD'));
-    APEX_UTIL.SET_SESSION_STATE('P210_NEXT_END',    TO_CHAR(next_end,   'YYYY-MM-DD'));
+    apex.set_item('P210_NEXT_START',  TO_CHAR(next_start, 'YYYY-MM-DD'));
+    apex.set_item('P210_NEXT_END',    TO_CHAR(next_end,   'YYYY-MM-DD'));
 END;
 /

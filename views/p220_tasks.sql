@@ -15,5 +15,5 @@ LEFT JOIN sprints s
     AND s.is_active     = 'Y'
 LEFT JOIN resources r
     ON r.resource_id    = t.resource_id
-WHERE t.project_id      = NVL(APEX_UTIL.GET_SESSION_STATE('P0_PROJECT_ID'), t.project_id);
+WHERE t.project_id      = NVL(apex.get_item('P0_PROJECT_ID'), t.project_id);
 

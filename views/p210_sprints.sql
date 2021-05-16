@@ -24,5 +24,5 @@ SELECT
 FROM sprints s
 LEFT JOIN t
     ON t.sprint_id      = s.sprint_id
-WHERE s.project_id      = APEX_UTIL.GET_SESSION_STATE('P0_PROJECT_ID');
+WHERE s.project_id      = apex.get_item('P0_PROJECT_ID');
 

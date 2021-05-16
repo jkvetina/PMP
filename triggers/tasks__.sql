@@ -2,8 +2,8 @@ CREATE OR REPLACE TRIGGER tasks__
 FOR UPDATE OR INSERT OR DELETE ON tasks
 COMPOUND TRIGGER
 
-    in_updated_by       CONSTANT tasks.updated_by%TYPE  := COALESCE(APEX_APPLICATION.G_USER, USER);
-    in_updated_at       CONSTANT tasks.updated_at%TYPE  := SYSDATE;
+    in_updated_by       CONSTANT user_roles.updated_by%TYPE     := auth.get_user_login();
+    in_updated_at       CONSTANT user_roles.updated_at%TYPE     := SYSDATE;
 
 
 
@@ -70,7 +70,7 @@ COMPOUND TRIGGER
         END IF;
     EXCEPTION
     WHEN OTHERS THEN
-        RAISE;
+        apex.raise_error('UNHANDLED_ERROR');
     END BEFORE EACH ROW;
 
 END;
