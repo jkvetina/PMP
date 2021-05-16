@@ -148,3 +148,26 @@ INSERT INTO projects (project_id, project_name, description_, status, is_active)
 --
 COMMIT;
 
+
+
+--
+-- ASSIGN OWNERS AND MANAGERS TO PROJECTS
+--
+UPDATE projects p
+SET p.owner_id = (
+        SELECT MIN(r.resource_id)
+        FROM user_roles u
+        JOIN resources r
+            ON r.user_login     = u.user_login
+        WHERE u.role_code       = 'OWNER'
+    ),
+    p.manager_id = (
+        SELECT MIN(r.resource_id)
+        FROM user_roles u
+        JOIN resources r
+            ON r.user_login     = u.user_login
+        WHERE u.role_code       = 'MANAGER'
+    );
+--
+COMMIT;
+
