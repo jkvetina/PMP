@@ -263,7 +263,8 @@ CREATE TABLE user_roles (
     CONSTRAINT fk_users_roles_user_login
         FOREIGN KEY (user_login)
         REFERENCES resources (user_login)
-);
+)
+STORAGE (BUFFER_POOL KEEP);
 --
 COMMENT ON TABLE user_roles IS 'List of roles assigned to users';
 --
