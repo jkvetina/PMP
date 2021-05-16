@@ -15,12 +15,11 @@ wwv_flow_api.create_page(
  p_id=>0
 ,p_user_interface_id=>wwv_flow_api.id(116725382918910484)
 ,p_name=>'Global Page - Desktop'
-,p_step_title=>'Global Page - Desktop'
 ,p_autocomplete_on_off=>'OFF'
-,p_page_template_options=>'#DEFAULT#'
+,p_group_id=>wwv_flow_api.id(118806484582264200)
 ,p_protection_level=>'D'
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210515175045'
+,p_last_upd_yyyymmddhh24miss=>'20210516111251'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(118257844337838832)

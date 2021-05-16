@@ -23,6 +23,10 @@ wwv_flow_api.create_page_group(
  p_id=>wwv_flow_api.id(117057536870999705)
 ,p_group_name=>'RESOURCES'
 );
+wwv_flow_api.create_page_group(
+ p_id=>wwv_flow_api.id(118806484582264200)
+,p_group_name=>'USER'
+);
 wwv_flow_api.component_end;
 end;
 /
