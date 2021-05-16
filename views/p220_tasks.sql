@@ -4,7 +4,9 @@ SELECT
     p.project_name,
     p.status            AS project_status,
     s.sprint_name       AS sprint__,
-    r.person_name       AS resource__
+    r.person_name       AS resource__,
+    --
+    CASE WHEN t.resource_id = auth.get_resource_id() THEN 'U' END AS auth_resource
 FROM tasks t
 JOIN projects p
     ON p.project_id     = t.project_id
