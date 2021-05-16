@@ -14,9 +14,10 @@ SELECT
     p.project_name,
     MAX(w.tasks_waiting)    AS tasks_waiting,
     --
-    SUM(CASE WHEN t.status = 'COMPLETE' THEN 0 ELSE 1 END)  AS tasks_planned,
-    SUM(CASE WHEN t.status = 'COMPLETE' THEN 1 ELSE 0 END)  AS tasks_done,
-    COUNT(DISTINCT t.resource_id)                           AS resources
+    SUM(CASE WHEN t.status = 'READY'        THEN 1 ELSE 0 END)  AS tasks_ready,
+    SUM(CASE WHEN t.status = 'IN-PROGRESS'  THEN 1 ELSE 0 END)  AS tasks_in_progress,
+    SUM(CASE WHEN t.status = 'COMPLETE'     THEN 1 ELSE 0 END)  AS tasks_complete,
+    COUNT(DISTINCT t.resource_id)                               AS resources
 FROM projects p
 JOIN sprints s
     ON s.project_id     = p.project_id

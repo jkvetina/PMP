@@ -58,7 +58,9 @@ CREATE OR REPLACE PACKAGE BODY grid AS
     AS
     BEGIN
         -- ignore filter if item was not passed in url or filtered value is empty
-        IF in_check_item IS NOT NULL AND (is_item_in_url(in_check_item) OR in_filter_value IS NULL) THEN
+        IF in_filter_value IS NULL THEN
+            RETURN;
+        ELSIF in_check_item IS NOT NULL AND NOT is_item_in_url(in_check_item) THEN
             RETURN;
         END IF;
         --

@@ -24,7 +24,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(118801843615136462)
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516162734'
+,p_last_upd_yyyymmddhh24miss=>'20210516205415'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117872772390527419)
@@ -1455,6 +1455,18 @@ wwv_flow_api.create_page_process(
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'SET_FILTERS'
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'IF NOT grid.is_item_in_url(''P220_FILTER_SPRINT'') THEN',
+'    apex.set_item(''P220_FILTER_SPRINT'', NULL);',
+'END IF;',
+'--',
+'IF NOT grid.is_item_in_url(''P220_FILTER_RESOURCE'') THEN',
+'    apex.set_item(''P220_FILTER_RESOURCE'', NULL);',
+'END IF;',
+'--',
+'IF NOT grid.is_item_in_url(''P220_FILTER_STATUS'') THEN',
+'    apex.set_item(''P220_FILTER_STATUS'', NULL);',
+'END IF;',
+'--',
 'grid.reset_filters(''TASKS'');',
 '--',
 'grid.set_filters (',
@@ -1471,6 +1483,13 @@ wwv_flow_api.create_page_process(
 '    in_filter_value         => apex.get_item(''P220_FILTER_RESOURCE''),',
 '    in_operator             => ''EQ'',',
 '    in_check_item           => ''P220_FILTER_RESOURCE''',
+');',
+'--',
+'grid.set_filters (',
+'    in_static_id            => ''TASKS'',',
+'    in_column_name          => ''STATUS'',',
+'    in_filter_value         => apex.get_item(''P220_FILTER_STATUS''),',
+'    in_operator             => ''EQ''',
 ');',
 ''))
 ,p_process_clob_language=>'PLSQL'
