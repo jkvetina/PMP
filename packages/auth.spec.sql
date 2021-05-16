@@ -8,8 +8,13 @@ CREATE OR REPLACE PACKAGE auth AS
 
 
 
-    FUNCTION get_user_id
+    FUNCTION get_user_login
     RETURN apex_workspace_apex_users.email%TYPE;
+
+
+
+    FUNCTION get_resource_id
+    RETURN resources.resource_id%TYPE;
 
 
 
@@ -34,6 +39,11 @@ CREATE OR REPLACE PACKAGE auth AS
 
 
     FUNCTION is_owner_manager_sponzor
+    RETURN CHAR;
+
+
+
+    FUNCTION is_sponzor
     RETURN CHAR;
 
 

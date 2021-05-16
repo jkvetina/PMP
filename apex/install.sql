@@ -11,6 +11,8 @@ prompt --install
 @@application/shared_components/security/authorizations/is_owner_manager.sql
 @@application/shared_components/security/authorizations/is_owner_manager_sponzor.sql
 @@application/shared_components/security/authorizations/is_resource.sql
+@@application/shared_components/security/authorizations/is_sponzor.sql
+@@application/shared_components/security/authorizations/never.sql
 @@application/shared_components/navigation/navigation_bar.sql
 @@application/shared_components/logic/application_settings.sql
 @@application/shared_components/navigation/tabs/standard.sql
