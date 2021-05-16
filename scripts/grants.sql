@@ -68,10 +68,12 @@ END;
 GRANT EXECUTE ON            pmp.resources_skills_update         TO pmp_apex;
 GRANT EXECUTE ON            pmp.set_sprint_boundaries           TO pmp_apex;
 GRANT EXECUTE ON            pmp.auth                            TO pmp_apex;
+GRANT EXECUTE ON            pmp.apex                            TO pmp_apex;
 GRANT EXECUTE ON            pmp.grid                            TO pmp_apex;
 --
 CREATE OR REPLACE SYNONYM   pmp_apex.resources_skills_update    FOR pmp.resources_skills_update;
 CREATE OR REPLACE SYNONYM   pmp_apex.set_sprint_boundaries      FOR pmp.set_sprint_boundaries;
 CREATE OR REPLACE SYNONYM   pmp_apex.auth                       FOR pmp.auth;
+CREATE OR REPLACE SYNONYM   pmp_apex.apex                       FOR pmp.apex;
 CREATE OR REPLACE SYNONYM   pmp_apex.grid                       FOR pmp.grid;
 
