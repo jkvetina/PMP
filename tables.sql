@@ -310,6 +310,7 @@ COMMENT ON COLUMN user_roles.is_active              IS '';
 @"./views/p310_resources.sql"
 @"./views/p310_skills.sql"
 @"./views/p310_skills_assigned.sql"
+@"./views/p800_user_roles.sql"
 
 
 
