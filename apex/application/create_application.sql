@@ -32,7 +32,7 @@ wwv_flow_api.create_flow(
 ,p_flow_image_prefix => nvl(wwv_flow_application_install.get_image_prefix,'')
 ,p_documentation_banner=>'Application created from create application wizard 2021.05.13.'
 ,p_authentication=>'PLUGIN'
-,p_authentication_id=>wwv_flow_api.id(118809821770536346)
+,p_authentication_id=>wwv_flow_api.id(116584897387910070)
 ,p_application_tab_set=>1
 ,p_logo_type=>'T'
 ,p_logo_text=>'Project Management'
@@ -56,7 +56,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_01=>'APP_NAME'
 ,p_substitution_value_01=>'Project Management'
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516161649'
+,p_last_upd_yyyymmddhh24miss=>'20210516231912'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>5
 ,p_ui_type_name => null

@@ -22,6 +22,7 @@ prompt --install
 @@application/shared_components/user_interface/lovs/lov_projects_active.sql
 @@application/shared_components/user_interface/lovs/lov_resources.sql
 @@application/shared_components/user_interface/lovs/lov_resources_active.sql
+@@application/shared_components/user_interface/lovs/lov_sprints.sql
 @@application/shared_components/user_interface/lovs/lov_task_priority.sql
 @@application/shared_components/user_interface/lovs/lov_task_status.sql
 @@application/pages/page_groups.sql

@@ -23,6 +23,8 @@ SELECT
     NVL(t.resources, 0)             AS resources,
     --
     CASE
+        WHEN auth.is_developer() = 'Y'
+            THEN 'IUD'
         WHEN s.is_active = 'Y' AND p.is_active = 'Y' AND auth.get_resource_id() IN (p.owner_id, p.manager_id)
             THEN 'IU'
         END AS auth_management

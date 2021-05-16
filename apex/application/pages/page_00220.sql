@@ -24,7 +24,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(118801843615136462)
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516215529'
+,p_last_upd_yyyymmddhh24miss=>'20210516231912'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117872772390527419)
@@ -289,14 +289,8 @@ wwv_flow_api.create_region_column(
 ,p_display_sequence=>100
 ,p_value_alignment=>'LEFT'
 ,p_is_required=>false
-,p_lov_type=>'SQL_QUERY'
-,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'SELECT',
-'    s.sprint_name,',
-'    s.sprint_id',
-'FROM sprints s',
-'WHERE s.project_id = :P0_PROJECT_ID;',
-''))
+,p_lov_type=>'SHARED'
+,p_lov_id=>wwv_flow_api.id(119007874151524039)
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
 ,p_enable_filter=>true
@@ -976,14 +970,8 @@ wwv_flow_api.create_region_column(
 ,p_display_sequence=>100
 ,p_value_alignment=>'LEFT'
 ,p_is_required=>false
-,p_lov_type=>'SQL_QUERY'
-,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'SELECT',
-'    s.sprint_name,',
-'    s.sprint_id',
-'FROM sprints s',
-'WHERE s.project_id = :P0_PROJECT_ID;',
-''))
+,p_lov_type=>'SHARED'
+,p_lov_id=>wwv_flow_api.id(119007874151524039)
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
 ,p_enable_filter=>true
@@ -1119,18 +1107,6 @@ wwv_flow_api.create_region_column(
 ,p_is_primary_key=>false
 ,p_include_in_export=>false
 );
-wwv_flow_api.component_end;
-end;
-/
-begin
-wwv_flow_api.component_begin (
- p_version_yyyy_mm_dd=>'2020.10.01'
-,p_release=>'20.2.0.00.20'
-,p_default_workspace_id=>116577013837797376
-,p_default_application_id=>1000
-,p_default_id_offset=>0
-,p_default_owner=>'PMP_APEX'
-);
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(118815174230809102)
 ,p_name=>'PROJECT_STATUS'
@@ -1157,6 +1133,18 @@ wwv_flow_api.create_region_column(
 ,p_is_primary_key=>false
 ,p_include_in_export=>true
 ,p_escape_on_http_output=>true
+);
+wwv_flow_api.component_end;
+end;
+/
+begin
+wwv_flow_api.component_begin (
+ p_version_yyyy_mm_dd=>'2020.10.01'
+,p_release=>'20.2.0.00.20'
+,p_default_workspace_id=>116577013837797376
+,p_default_application_id=>1000
+,p_default_id_offset=>0
+,p_default_owner=>'PMP_APEX'
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(118815222320809103)
@@ -1330,9 +1318,13 @@ wwv_flow_api.create_ig_report_column(
 ,p_view_id=>wwv_flow_api.id(118821114509824180)
 ,p_display_seq=>2
 ,p_column_id=>wwv_flow_api.id(118551761750739945)
-,p_is_visible=>true
+,p_is_visible=>false
 ,p_is_frozen=>false
 ,p_width=>195
+,p_break_order=>10
+,p_break_is_enabled=>true
+,p_break_sort_direction=>'DESC'
+,p_break_sort_nulls=>'LAST'
 );
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(118829128759824222)
