@@ -31,5 +31,15 @@ CREATE OR REPLACE PACKAGE auth AS
     FUNCTION is_owner_manager
     RETURN CHAR;
 
+
+
+    FUNCTION is_owner_manager_sponzor
+    RETURN CHAR;
+
+
+
+    FUNCTION is_resource
+    RETURN CHAR;
+
 END;
 /

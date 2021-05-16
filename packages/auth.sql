@@ -57,7 +57,67 @@ CREATE OR REPLACE PACKAGE BODY auth AS
             SELECT valid_result INTO result_
             FROM user_roles r
             WHERE r.user_login      = auth.get_user_id()
-                AND r.role_code     IN (role_owner, role_manager)
+                AND r.role_code     IN (auth.role_owner, auth.role_manager)
+                AND r.is_active     = 'Y'
+                AND ROWNUM          = 1;
+            --
+            RETURN result_;
+        EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            NULL;
+        END;
+
+        -- check higher roles
+        IF auth.is_developer() = valid_result THEN
+            RETURN valid_result;
+        END IF;
+        --
+        RETURN NULL;
+    END;
+
+
+
+    FUNCTION is_owner_manager_sponzor
+    RETURN CHAR AS
+        PRAGMA UDF;
+        --
+        result_         CHAR;
+    BEGIN
+        BEGIN
+            SELECT valid_result INTO result_
+            FROM user_roles r
+            WHERE r.user_login      = auth.get_user_id()
+                AND r.role_code     IN (auth.role_owner, auth.role_manager, auth.role_sponzor)
+                AND r.is_active     = 'Y'
+                AND ROWNUM          = 1;
+            --
+            RETURN result_;
+        EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            NULL;
+        END;
+
+        -- check higher roles
+        IF auth.is_developer() = valid_result THEN
+            RETURN valid_result;
+        END IF;
+        --
+        RETURN NULL;
+    END;
+
+
+
+    FUNCTION is_resource
+    RETURN CHAR AS
+        PRAGMA UDF;
+        --
+        result_         CHAR;
+    BEGIN
+        BEGIN
+            SELECT valid_result INTO result_
+            FROM resources r
+            WHERE r.user_login      = auth.get_user_id()
+                AND r.is_active     = 'Y'
                 AND ROWNUM          = 1;
             --
             RETURN result_;
