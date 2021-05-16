@@ -1,5 +1,16 @@
 CREATE OR REPLACE PACKAGE BODY grid AS
 
+    FUNCTION is_item_in_url (
+        in_item_name            VARCHAR2
+    )
+    RETURN BOOLEAN
+    AS
+    BEGIN
+        RETURN INSTR(OWA_UTIL.GET_CGI_ENV('QUERY_STRING'), LOWER(in_item_name) || '=') > 0;
+    END;
+
+
+
     FUNCTION get_region_id (
         in_static_id            apex_application_page_regions.static_id%TYPE
     )
@@ -11,8 +22,8 @@ CREATE OR REPLACE PACKAGE BODY grid AS
         SELECT region_id
         INTO region_id
         FROM apex_application_page_regions
-        WHERE application_id    = NV('APP_ID')
-            AND page_id         = NV('APP_PAGE_ID')
+        WHERE application_id    = auth.get_app_id()
+            AND page_id         = auth.get_page_id()
             AND static_id       = in_static_id;
         --
         RETURN region_id;
@@ -26,7 +37,7 @@ CREATE OR REPLACE PACKAGE BODY grid AS
     AS
     BEGIN
         APEX_IG.RESET_REPORT (
-            p_page_id           => NV('APP_PAGE_ID'),
+            p_page_id           => auth.get_page_id(),
             p_region_id         => grid.get_region_id(in_static_id),
             p_report_id         => NULL
         );
@@ -47,12 +58,12 @@ CREATE OR REPLACE PACKAGE BODY grid AS
     AS
     BEGIN
         -- ignore filter if item was not passed in url or filtered value is empty
-        IF in_check_item IS NOT NULL AND (INSTR(OWA_UTIL.GET_CGI_ENV('QUERY_STRING'), LOWER(in_check_item) || '=') = 0 OR in_filter_value IS NULL) THEN
+        IF in_check_item IS NOT NULL AND (is_item_in_url(in_check_item) OR in_filter_value IS NULL) THEN
             RETURN;
         END IF;
         --
         APEX_IG.ADD_FILTER (
-            p_page_id           => NV('APP_PAGE_ID'),
+            p_page_id           => auth.get_page_id(),
             p_region_id         => grid.get_region_id(in_static_id),
             p_column_name       => in_column_name,
             p_filter_value      => in_filter_value,

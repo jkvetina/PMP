@@ -1,5 +1,12 @@
 CREATE OR REPLACE PACKAGE grid AS
 
+    FUNCTION is_item_in_url (
+        in_item_name            VARCHAR2
+    )
+    RETURN BOOLEAN;
+
+
+
     FUNCTION get_region_id (
         in_static_id            apex_application_page_regions.static_id%TYPE
     )
