@@ -14,6 +14,8 @@ COMPOUND TRIGGER
             :NEW.updated_at     := in_updated_at;
         END IF;
     EXCEPTION
+    WHEN apex.app_exception THEN
+        RAISE;
     WHEN OTHERS THEN
         apex.raise_error('UNHANDLED_ERROR');
     END BEFORE EACH ROW;

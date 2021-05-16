@@ -15,5 +15,10 @@ BEGIN
     --
     apex.set_item('P210_NEXT_START',  TO_CHAR(next_start, 'YYYY-MM-DD'));
     apex.set_item('P210_NEXT_END',    TO_CHAR(next_end,   'YYYY-MM-DD'));
+EXCEPTION
+WHEN apex.app_exception THEN
+    RAISE;
+WHEN OTHERS THEN
+    apex.raise_error('UNHANDLED_ERROR');
 END;
 /

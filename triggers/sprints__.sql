@@ -43,6 +43,8 @@ COMPOUND TRIGGER
             );
         END IF;
     EXCEPTION
+    WHEN apex.app_exception THEN
+        RAISE;
     WHEN OTHERS THEN
         apex.raise_error('UNHANDLED_ERROR');
     END BEFORE EACH ROW;
@@ -65,11 +67,13 @@ COMPOUND TRIGGER
                     );
                 --
                 IF results > 0 THEN
-                    RAISE_APPLICATION_ERROR(-20000, 'SPRINT_OVERLAPS');
+                    apex.raise_error('SPRINT_OVERLAPS');
                 END IF;
             END LOOP;
         END IF;
     EXCEPTION
+    WHEN apex.app_exception THEN
+        RAISE;
     WHEN OTHERS THEN
         apex.raise_error('UNHANDLED_ERROR');
     END AFTER STATEMENT;

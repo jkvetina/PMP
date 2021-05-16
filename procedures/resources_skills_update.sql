@@ -84,10 +84,9 @@ BEGIN
         END IF;        
     END LOOP;
 EXCEPTION
-WHEN OTHERS THEN
-    --
-    -- @TODO: log errors
-    --
+WHEN apex.app_exception THEN
     RAISE;
+WHEN OTHERS THEN
+    apex.raise_error('UNHANDLED_ERROR');
 END;
 /

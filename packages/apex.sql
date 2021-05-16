@@ -41,7 +41,7 @@ CREATE OR REPLACE PACKAGE BODY apex AS
         --
         out_result.display_location := apex_error.c_inline_in_notification;
         --
-        IF p_error.ora_sqlcode = -20000 THEN
+        IF p_error.ora_sqlcode = apex.app_exception_code THEN
             out_result.message := APEX_ERROR.GET_FIRST_ORA_ERROR_TEXT (
                 p_error => p_error
             ) || ' [FRIENDLY_MESSAGE]';
@@ -60,7 +60,7 @@ CREATE OR REPLACE PACKAGE BODY apex AS
         --
         -- @TODO: log this message
         --
-        RAISE_APPLICATION_ERROR(-20000, in_message);
+        RAISE_APPLICATION_ERROR(apex.app_exception_code, in_message, TRUE);
     END;
 
 END;

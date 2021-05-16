@@ -20,7 +20,7 @@ COMPOUND TRIGGER
                         AND r.is_active     = 'Y';
                 EXCEPTION
                 WHEN NO_DATA_FOUND THEN
-                    RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_OWNER');
+                    apex.raise_error('INACTIVE_OWNER');
                 END;
             END IF;
             --
@@ -33,7 +33,7 @@ COMPOUND TRIGGER
                         AND r.is_active     = 'Y';
                 EXCEPTION
                 WHEN NO_DATA_FOUND THEN
-                    RAISE_APPLICATION_ERROR(-20000, 'INACTIVE_MANAGER');
+                    apex.raise_error('INACTIVE_MANAGER');
                 END;
             END IF;
 
@@ -48,6 +48,8 @@ COMPOUND TRIGGER
             :NEW.updated_at     := in_updated_at;
         END IF;
     EXCEPTION
+    WHEN apex.app_exception THEN
+        RAISE;
     WHEN OTHERS THEN
         apex.raise_error('UNHANDLED_ERROR');
     END BEFORE EACH ROW;
