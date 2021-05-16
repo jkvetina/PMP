@@ -6,6 +6,8 @@ SELECT
     s.sprint_name       AS sprint__,
     r.person_name       AS resource__,
     --
+    CASE WHEN p.is_active  = 'Y' THEN 'IU' END AS auth_management,
+    --
     CASE WHEN t.resource_id = auth.get_resource_id() THEN 'U' END AS auth_resource
 FROM tasks t
 JOIN projects p
