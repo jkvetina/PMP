@@ -24,7 +24,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(118801843615136462)
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516205415'
+,p_last_upd_yyyymmddhh24miss=>'20210516215529'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117872772390527419)
@@ -657,6 +657,10 @@ wwv_flow_api.create_ig_report_column(
 ,p_column_id=>wwv_flow_api.id(117873615880527428)
 ,p_is_visible=>true
 ,p_is_frozen=>false
+,p_break_order=>10
+,p_break_is_enabled=>true
+,p_break_sort_direction=>'DESC'
+,p_break_sort_nulls=>'FIRST'
 );
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(118167284140048136)
@@ -1115,6 +1119,18 @@ wwv_flow_api.create_region_column(
 ,p_is_primary_key=>false
 ,p_include_in_export=>false
 );
+wwv_flow_api.component_end;
+end;
+/
+begin
+wwv_flow_api.component_begin (
+ p_version_yyyy_mm_dd=>'2020.10.01'
+,p_release=>'20.2.0.00.20'
+,p_default_workspace_id=>116577013837797376
+,p_default_application_id=>1000
+,p_default_id_offset=>0
+,p_default_owner=>'PMP_APEX'
+);
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(118815174230809102)
 ,p_name=>'PROJECT_STATUS'
@@ -1141,18 +1157,6 @@ wwv_flow_api.create_region_column(
 ,p_is_primary_key=>false
 ,p_include_in_export=>true
 ,p_escape_on_http_output=>true
-);
-wwv_flow_api.component_end;
-end;
-/
-begin
-wwv_flow_api.component_begin (
- p_version_yyyy_mm_dd=>'2020.10.01'
-,p_release=>'20.2.0.00.20'
-,p_default_workspace_id=>116577013837797376
-,p_default_application_id=>1000
-,p_default_id_offset=>0
-,p_default_owner=>'PMP_APEX'
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(118815222320809103)
@@ -1473,16 +1477,14 @@ wwv_flow_api.create_page_process(
 '    in_static_id            => ''TASKS'',',
 '    in_column_name          => ''SPRINT__'',',
 '    in_filter_value         => apex.get_item(''P220_FILTER_SPRINT''),',
-'    in_operator             => ''EQ'',',
-'    in_check_item           => ''P220_FILTER_SPRINT''',
+'    in_operator             => ''EQ''',
 ');',
 '--',
 'grid.set_filters (',
 '    in_static_id            => ''TASKS'',',
 '    in_column_name          => ''RESOURCE__'',',
 '    in_filter_value         => apex.get_item(''P220_FILTER_RESOURCE''),',
-'    in_operator             => ''EQ'',',
-'    in_check_item           => ''P220_FILTER_RESOURCE''',
+'    in_operator             => ''EQ''',
 ');',
 '--',
 'grid.set_filters (',

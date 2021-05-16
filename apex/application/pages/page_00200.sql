@@ -24,7 +24,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(118801843615136462)
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516131956'
+,p_last_upd_yyyymmddhh24miss=>'20210516212345'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(117065606992133430)
@@ -366,7 +366,7 @@ wwv_flow_api.create_region_column(
 ,p_display_sequence=>180
 ,p_value_alignment=>'RIGHT'
 ,p_attribute_02=>'VALUE'
-,p_link_target=>'f?p=&APP_ID.:300:&SESSION.::&DEBUG.::P0_PROJECT_ID:&PROJECT_ID.'
+,p_link_target=>'f?p=&APP_ID.:300:&SESSION.::&DEBUG.::P0_PROJECT_ID,P300_FILTER_TASKS:&PROJECT_ID.,0'
 ,p_link_text=>'&RESOURCES.'
 ,p_link_attributes=>'style="font-weight: bold;"'
 ,p_enable_filter=>true

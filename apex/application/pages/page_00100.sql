@@ -23,7 +23,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(118801843615136462)
 ,p_last_updated_by=>'PMP_DEV'
-,p_last_upd_yyyymmddhh24miss=>'20210516205329'
+,p_last_upd_yyyymmddhh24miss=>'20210516212440'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(118816127265809112)
@@ -140,7 +140,7 @@ wwv_flow_api.create_jet_chart_series(
 ,p_assigned_to_y2=>'off'
 ,p_stack_category=>'Resources'
 ,p_items_label_rendered=>false
-,p_link_target=>'f?p=&APP_ID.:300:&SESSION.::&DEBUG.::P0_PROJECT_ID:&PROJECT_ID.'
+,p_link_target=>'f?p=&APP_ID.:300:&SESSION.::&DEBUG.::P0_PROJECT_ID,P300_FILTER_TASKS:&PROJECT_ID.,0'
 ,p_link_target_type=>'REDIRECT_PAGE'
 );
 wwv_flow_api.create_jet_chart_axis(

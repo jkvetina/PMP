@@ -1,25 +1,27 @@
 CREATE OR REPLACE VIEW p300_resources AS
 WITH t AS (
     SELECT
-        t.resource_id,
-        COUNT(DISTINCT p.project_id)                                AS projects,
-        COUNT(*)                                                    AS tasks,
-        SUM(CASE WHEN t.status = 'READY'        THEN 1 ELSE 0 END)  AS tasks_ready,
-        SUM(CASE WHEN t.status = 'IN-PROGRESS'  THEN 1 ELSE 0 END)  AS tasks_in_progress,
-        SUM(CASE WHEN t.status = 'COMPLETE'     THEN 1 ELSE 0 END)  AS tasks_complete,
-        SUM(CASE WHEN t.resource_id IS NOT NULL THEN 1 ELSE 0 END)  AS resources
+        r.resource_id,
+        COUNT(DISTINCT t.project_id)    AS projects,
         --
-        --MAX(CASE WHEN p.project_id = APEX_UTIL.GET_SESSION_STATE('P300_PROJECT_ID')
-        --        OR APEX_UTIL.GET_SESSION_STATE('P300_PROJECT_ID') IS NULL
-        --    THEN 'Y' ELSE 'N' END) AS project_match
-    FROM tasks t
-    JOIN sprints s
+        SUM(CASE WHEN p.project_id IS NOT NULL AND t.status IS NOT NULL      THEN 1 ELSE 0 END)  AS tasks,
+        SUM(CASE WHEN p.project_id IS NOT NULL AND t.status = 'READY'        THEN 1 ELSE 0 END)  AS tasks_ready,
+        SUM(CASE WHEN p.project_id IS NOT NULL AND t.status = 'IN-PROGRESS'  THEN 1 ELSE 0 END)  AS tasks_in_progress,
+        SUM(CASE WHEN p.project_id IS NOT NULL AND t.status = 'COMPLETE'     THEN 1 ELSE 0 END)  AS tasks_complete
+    FROM resources r
+    LEFT JOIN tasks t
+        ON t.resource_id    = r.resource_id
+    LEFT JOIN sprints s
         ON s.sprint_id      = t.sprint_id
-    JOIN projects p
+        AND s.is_active     = 'Y'
+    LEFT JOIN projects p
         ON p.project_id     = t.project_id
-    WHERE s.is_active       = 'Y'
         AND p.is_active     = 'Y'
-    GROUP BY t.resource_id
+        AND (
+            p.project_id    = apex.get_item('P0_PROJECT_ID')
+            OR apex.get_item('P0_PROJECT_ID') IS NULL
+        )
+    GROUP BY r.resource_id
 ),
 s AS (
     SELECT *
@@ -63,13 +65,8 @@ SELECT
     NVL(t.tasks_in_progress, 0)     AS tasks_in_progress,
     NVL(t.tasks_complete, 0)        AS tasks_complete
 FROM resources r
-LEFT JOIN t
+JOIN t
     ON t.resource_id        = r.resource_id
 LEFT JOIN s
-    ON s.resource_id        = r.resource_id
-WHERE (
-    --APEX_UTIL.GET_SESSION_STATE('P300_PROJECT_ID') IS NULL
-    --OR t.project_match = 'Y'
-    1 = 1
-);
+    ON s.resource_id        = r.resource_id;
 
