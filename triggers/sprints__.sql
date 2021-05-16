@@ -4,6 +4,8 @@ COMPOUND TRIGGER
 
     in_updated_by       CONSTANT user_roles.updated_by%TYPE     := auth.get_user_login();
     in_updated_at       CONSTANT user_roles.updated_at%TYPE     := SYSDATE;
+    --
+    is_developer        CONSTANT BOOLEAN                        := auth.is_developer() = 'Y';
 
     -- collection to store new/changed rows
     TYPE r_rows
@@ -25,7 +27,7 @@ COMPOUND TRIGGER
     BEGIN
         IF NOT DELETING THEN
             -- check if new sprint is created by project owner/manager
-            IF INSERTING THEN
+            IF INSERTING AND NOT is_developer THEN
                 BEGIN
                     SELECT in_updated_by
                     INTO :NEW.updated_by

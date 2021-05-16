@@ -1,5 +1,8 @@
 SET DEFINE OFF
 
+--
+-- DELETE EXISTING DATA
+--
 TRUNCATE TABLE tasks;
 TRUNCATE TABLE sprints;
 TRUNCATE TABLE resource_skills;
@@ -42,6 +45,10 @@ INSERT INTO resources (resource_id, person_name, user_login, description_, is_ac
 INSERT INTO resources (resource_id, person_name, user_login, description_, is_active) VALUES (resource_id.NEXTVAL, 'Raptorex',          'raptorex@domain.com',          'Raptorex, more commonly known as Raptor, is another rather famous carnivore in the world of dinosaurs. They originate from Asia and some of the most important Raptorex fossils have been located in China and Mongolia.', 'Y');
 --
 -- @TODO: ADD 25 MORE
+--
+INSERT INTO resources (resource_id, person_name, user_login, description_, is_active)
+SELECT resource_id.NEXTVAL, r.person_name || '2', REPLACE(r.user_login, '@', '2@'), r.description_, r.is_active
+FROM resources r;
 --
 COMMIT;
 
@@ -123,7 +130,7 @@ INSERT INTO projects (project_id, project_name, description_, status, is_active)
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Auth roles, Users + security checks', 'DESCRIPTION', 'READY', 'HIGH', project_id.CURRVAL, NULL, NULL, NULL);
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Fix status in Projects (more options)', 'DESCRIPTION', 'IN-PROGRESS', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Email notifications', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
-INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Caneldar in Grids should start on Monday', 'DESCRIPTION', 'READY', 'LOW', project_id.CURRVAL, NULL, NULL, NULL);
+INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Calendar in Grids should start on Monday', 'DESCRIPTION', 'READY', 'LOW', project_id.CURRVAL, NULL, NULL, NULL);
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Bulk change tasks sprint (to another or NULL)', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Add feature to move/assign tasks in bulk', 'DESCRIPTION', 'READY', 'HIGH', project_id.CURRVAL, NULL, NULL, NULL);
 INSERT INTO tasks (task_id, task_title, description_, status, priority_, project_id, resource_id, sprint_id, estimate) VALUES (task_id.NEXTVAL, 'Add form on Tasks to create new task', 'DESCRIPTION', 'READY', 'NORMAL', project_id.CURRVAL, NULL, NULL, NULL);
@@ -269,12 +276,43 @@ END;
 
 
 --
+-- ASSIGN SOME RESOURCES TO TASKS
+--
+BEGIN
+    FOR c IN (
+        SELECT t.task_id, t.resource_id
+        FROM tasks SAMPLE (85) t
+        WHERE t.resource_id IS NULL
+        --FETCH FIRST 85 PERCENT ROWS WITH TIES
+    ) LOOP
+        SELECT r.resource_id INTO c.resource_id
+        FROM (
+            SELECT r.resource_id
+            FROM resources r
+            ORDER BY DBMS_RANDOM.RANDOM
+        ) r
+        WHERE ROWNUM = 1;
+        --
+        UPDATE tasks t
+        SET t.resource_id   = c.resource_id
+        WHERE t.task_id     = c.task_id;
+    END LOOP;
+    --
+    COMMIT;
+END;
+/
+
+
+
+--
 -- DEACTIVATE ONE PROJECT
 --
+/*
 UPDATE projects p
 SET p.status            = 'INACTIVE',
     p.is_active         = 'N'
 WHERE p.project_name    = 'DC Layout Tool';
 --
 COMMIT;
+*/
 

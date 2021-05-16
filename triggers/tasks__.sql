@@ -6,6 +6,7 @@ COMPOUND TRIGGER
     in_updated_at       CONSTANT user_roles.updated_at%TYPE     := SYSDATE;
     --
     is_sponzor          CHAR;
+    is_developer        CONSTANT BOOLEAN                        := auth.is_developer() = 'Y';
 
 
 
@@ -37,7 +38,7 @@ COMPOUND TRIGGER
         --
         IF NOT DELETING THEN
             -- check sprint status
-            IF :NEW.project_id IS NOT NULL THEN
+            IF :NEW.project_id IS NOT NULL AND NOT is_developer THEN
                 BEGIN
                     SELECT p.project_id
                     INTO :NEW.project_id
@@ -51,7 +52,7 @@ COMPOUND TRIGGER
             END IF;
 
             -- check sprint status
-            IF :NEW.sprint_id IS NOT NULL THEN
+            IF :NEW.sprint_id IS NOT NULL AND NOT is_developer THEN
                 BEGIN
                     SELECT s.sprint_id
                     INTO :NEW.sprint_id
@@ -73,7 +74,7 @@ COMPOUND TRIGGER
             END IF;
 
             -- check resource status
-            IF :NEW.resource_id IS NOT NULL THEN
+            IF :NEW.resource_id IS NOT NULL AND NOT is_developer THEN
                 BEGIN
                     SELECT r.resource_id
                     INTO :NEW.resource_id
@@ -87,7 +88,7 @@ COMPOUND TRIGGER
             END IF;
 
             -- check if new task is created by project owner/manager
-            IF INSERTING THEN
+            IF INSERTING AND NOT is_developer THEN
                 BEGIN
                     SELECT in_updated_by
                     INTO :NEW.updated_by

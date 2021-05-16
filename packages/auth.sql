@@ -54,6 +54,10 @@ CREATE OR REPLACE PACKAGE BODY auth AS
     RETURN CHAR AS
         result_         CHAR;
     BEGIN
+        IF auth.get_user_login() = USER THEN
+            RETURN valid_result;
+        END IF;
+        --
         SELECT valid_result INTO result_
         FROM apex_workspace_developers d
         JOIN apex_applications a
