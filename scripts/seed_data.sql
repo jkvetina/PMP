@@ -230,6 +230,7 @@ BEGIN
     ) LOOP
         c.sprint_id := sprint_id.NEXTVAL;
         --
+        /*
         INSERT INTO sprints (sprint_id, sprint_name, project_id, start_at, end_at, is_active)
         VALUES (
             c.sprint_id,
@@ -251,6 +252,7 @@ BEGIN
         WHERE s.sprint_id       = c.sprint_id;
         --
         c.sprint_id := sprint_id.NEXTVAL;
+        */
         --
         INSERT INTO sprints (sprint_id, sprint_name, project_id, start_at, end_at, is_active)
         VALUES (
@@ -266,7 +268,7 @@ BEGIN
         SET t.sprint_id         = c.sprint_id
         WHERE t.project_id      = c.project_id
             AND t.sprint_id     IS NULL
-            AND ROWNUM          <= 6;
+            AND ROWNUM          <= 8;
     END LOOP;
     --
     COMMIT;
@@ -280,7 +282,7 @@ END;
 --
 BEGIN
     FOR c IN (
-        SELECT t.task_id, t.resource_id
+        SELECT t.task_id, t.resource_id, t.status
         FROM tasks SAMPLE (85) t
         WHERE t.resource_id IS NULL
         --FETCH FIRST 85 PERCENT ROWS WITH TIES
@@ -293,9 +295,25 @@ BEGIN
         ) r
         WHERE ROWNUM = 1;
         --
+        SELECT DECODE(r#,
+            1, 'READY',
+            2, 'IN-PROGRESS',
+            3, 'COMPLETE'
+        )
+        INTO c.status
+        FROM (
+            SELECT LEVEL AS r#
+            FROM DUAL
+            CONNECT BY LEVEL <= 3
+            ORDER BY DBMS_RANDOM.RANDOM
+        ) r
+        WHERE ROWNUM = 1;
+        --
         UPDATE tasks t
-        SET t.resource_id   = c.resource_id
-        WHERE t.task_id     = c.task_id;
+        SET t.resource_id       = c.resource_id,
+            t.status            = c.status
+        WHERE t.task_id         = c.task_id
+            AND t.sprint_id     IS NOT NULL;
     END LOOP;
     --
     COMMIT;
